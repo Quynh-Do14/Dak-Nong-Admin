@@ -1,43 +1,47 @@
-.modal .btn-ok {
-    border-radius: 5px;
-    background: #528DD2;
+.modal-common .btn-ok {
+    border-radius: 15px;
+    background: #6993ff;
     color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;
     font-size: 15px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 24px;
     letter-spacing: 0.15px;
     height: 44px;
 }
 
-.modal .btn-Cancel {
-    border-radius: 5px;
-    background: #E8EAEE;
-    color: #353434;
+.modal-common .btn-Cancel {
+    border-radius: 15px;
+    background: #f64e60;
+    color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;
     font-size: 15px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 24px;
     letter-spacing: 0.15px;
     height: 44px;
 }
 
-.modal .title {
-    color: #000;
-    font-size: 27px;
+.modal-common .title {
+    color: #7792b1;
+    font-size: 24px;
     font-style: normal;
     font-weight: 500;
     line-height: 48px;
     letter-spacing: 0.5px;
+    text-align: center;
+    border-bottom:1px solid #d5dfea;
 }
 
-.modal .message {
-    color: #000;
-    font-size: 15px;
+.modal-common .message {
+    color: #7792b1;
+    font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 48px;
     letter-spacing: 0.5px;
+    text-align: center;
+    border-bottom:1px solid #d5dfea;
 }

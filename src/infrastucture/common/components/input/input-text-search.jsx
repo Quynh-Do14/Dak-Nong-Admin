@@ -1,3 +1,4 @@
+import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import React from 'react'
 
@@ -18,6 +19,7 @@ export const InputSearchCommon = (props) => {
                 onChange={onChange}
                 disabled={disabled}
                 placeholder={placeholder}
+                prefix={<SearchOutlined className='icon-search'/>}
             />
         </div>
     )

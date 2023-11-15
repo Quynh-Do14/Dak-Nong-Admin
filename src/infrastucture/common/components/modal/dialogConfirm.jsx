@@ -14,10 +14,10 @@ const DialogConfirmCommon = (props) => {
                 footer={false}
                 onCancel={() => handleCancel()}
             >
-                <div className='modal'>
-                    <div className='mb-2 title'>{title}</div>
-                    <div className='mb-2-5 message'>{message}</div>
-                    <Row justify={"center"}>
+                <div className='modal-common'>
+                    <div className='title py-2'>{title}</div>
+                    <div className='message py-2'>{message}</div>
+                    <Row justify={"center"} className='py-4'>
                         <Col>
                             <Button className={"btn-Cancel mx-2"} type='text' key="f-2" onClick={() => handleCancel()}>{titleCancel}</Button>
                         </Col>

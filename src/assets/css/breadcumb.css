@@ -1,24 +1,24 @@
 .breadcumb-container {
-    background: #F0EEEE;
+    /* background: #F0EEEE; */
+    border-bottom: 1px solid #e3e3e3;
 }
 
-.breadcumb-container .breadcumb {
-    color: rgba(0, 0, 0, 0.30);
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
+.breadcumb-container .page-name {
+    font-size: 24px;
+    font-weight: 600;
     line-height: 24px;
     letter-spacing: 0.15px;
+    text-align: left;
+    color: #475f7b;
 }
 
+.breadcumb-container .breadcumb,
 .breadcumb-container .breadcumb-title {
-    color: #000;
+    color: #475f7b;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-size: 15px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 24px;
-    /* 160% */
     letter-spacing: 0.15px;
 }

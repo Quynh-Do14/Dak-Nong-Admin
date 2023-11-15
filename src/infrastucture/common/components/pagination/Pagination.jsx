@@ -5,7 +5,7 @@ import { Button, Pagination, Select } from "antd";
 export const PaginationCommon = (props) => {
     const { total, currentPage = 1, onChangePage, pageSize = Constants.PaginationConfigs.Size, onChangeSize = () => { }, disabled = false, } = props
     return (
-        <div className="w-100 flex justify-between pt-4 gap-2 container-pagination">
+        <div className="w-100 flex justify-between pt-4 pb-2 gap-2 container-pagination">
             <Pagination current={currentPage} total={total} showSizeChanger={false} pageSize={pageSize} onChange={onChangePage} />
             <div className="flex align-center gap-2">
                 <div className="show-title mr-4">Số bản ghi mỗi trang</div>

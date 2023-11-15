@@ -84,7 +84,7 @@
 }
 
 .main-layout .content .header-page .filter-page {
-    background: #F0EEEE;
+    /* background: #F0EEEE; */
 }
 
 .main-layout .content .header-page .title-page {
@@ -107,6 +107,14 @@
 
 .align-center {
     align-items: center;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.align-end {
+    align-items: flex-end;
 }
 
 .justify-center {
@@ -159,6 +167,10 @@
 
 .weight-600 {
     font-weight: 600;
+}
+
+.white-space-nowrap {
+    white-space: nowrap;
 }
 
 .message-error {
@@ -266,7 +278,7 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
 
 .table-common table {
     background: #fff;
-    border: solid #e9e9e9 1px;
+    border: solid rgb(227 227 227) 1px;
 }
 
 .table-common .ant-table-thead {
@@ -309,11 +321,13 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
 
 .container-pagination .ant-select-selector {
     border-radius: 6px !important;
-    border-color: #3D434B !important;
+    border-color: #475f7b !important;
+    color: #475f7b !important;
+
 }
 
 .container-pagination .ant-pagination li {
-    /* background-color: #DFE3E8 !important; */
+    color: #475f7b !important;
     border-radius: 4px;
 }
 
@@ -329,20 +343,20 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
 
 /* .container-pagination .ant-pagination .ant-pagination-disabled button:hover */
     {
-    color: #3D434B !important;
+    color: #475f7b !important;
     background-color: white !important;
     opacity: 50%;
 }
 
 .container-pagination .ant-pagination .ant-pagination-item-active {
     font-weight: 500;
-    background: #111111 !important;
-    border-color: #111111;
+    background: #4361EE !important;
+    border-color: #4361EE;
 }
 
 .container-pagination .ant-pagination .ant-pagination-item-active:hover {
     background: #fff !important;
-    border-color: #111111;
+    border-color: #4361EE;
 }
 
 :where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item-active a {
@@ -350,11 +364,11 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
 }
 
 :where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item-active a:hover {
-    color: #111111 !important;
+    color: #4361EE !important;
 }
 
 :where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item a {
-    color: #333333;
+    color: #475f7b;
 }
 
 .container-pagination a {
@@ -370,7 +384,7 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
 }
 
 .container-pagination .show-title {
-    color: var(--base-surface-on-primary, #1E2028);
+    color: #475f7b;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -380,6 +394,14 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
 
 :where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item a {
     margin: 0;
+}
+
+.hover-blue:hover {
+    color: #007bff !important;
+}
+
+.hover-red:hover {
+    color: #C50000 !important;
 }
 
 /* Margin Tailwind css */

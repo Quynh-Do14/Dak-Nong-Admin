@@ -98,7 +98,7 @@ export const ListCategoryServiceManagement = () => {
     return (
         <MainLayout breadcrumb={"Quản lý danh mục dịch vụ du lịch"} title={"Danh sách danh mục dịch vụ du lịch"} redirect={""}>
             <div className='flex flex-col header-page'>
-                <Row className='filter-page px-5 py-2-5 mb-10' justify={"space-between"} align={"middle"}>
+                <Row className='filter-page mb-2 py-2-5 mb-5' justify={"space-between"} align={"middle"}>
                     <Col xs={14} sm={14} md={10} lg={8}>
                         <InputSearchCommon
                             placeholder="Tìm kiếm theo tên..."

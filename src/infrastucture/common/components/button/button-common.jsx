@@ -3,7 +3,7 @@ import React from 'react'
 
 export const ButtonCommon = (props) => {
     const {
-        classColor = "blue" | "gradient" | "grey" ,
+        classColor = "blue" | "gradient" | "grey" | "black",
         onClick,
         icon
     } = props;

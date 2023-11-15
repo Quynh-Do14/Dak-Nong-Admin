@@ -1,4 +1,4 @@
-import { Layout, Menu, Row, Col } from 'antd';
+import { Layout, Menu, Row, Col, Dropdown, Space } from 'antd';
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons'
 import React, { useEffect, useState } from 'react';
 import "../../../../assets/css/MainLayout.css"
@@ -19,7 +19,7 @@ const { Header, Content, Sider } = Layout;
 
 
 export const MainLayout = ({ ...props }) => {
-  const { title, breadcrumb, redirect } = props
+  const { pageName, title, breadcrumb, redirect } = props
   const [collapsed, setCollapsed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isOpenModalLogout, setIsOpenModalLogout] = useState(false);
@@ -69,30 +69,63 @@ export const MainLayout = ({ ...props }) => {
     onGetListDistrictAsync();
   }, []);
 
+  const listAction = () => {
+    return (
+      <Menu className='action-admin'>
+        <Menu.Item className='info-admin'>
+          <div className='info-admin-title px-1 py-2-5 flex align-center hover-blue'>
+            <svg className='mr-1-5' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="4" />
+              <path d="M12 9a9 9 0 0 1 9 9H3a9 9 0 0 1 9-9z" />
+            </svg>
+
+            Thông tin cá nhân
+          </div>
+        </Menu.Item>
+        <Menu.Item className='info-admin' onClick={openModalLogout} >
+          <div className='info-admin-title px-1 py-2-5 flex align-center hover-red'>
+            <svg className='mr-1-5' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+            Đăng xuất
+          </div>
+        </Menu.Item>
+      </Menu>
+    )
+  };
+
   return (
     <div className="main-layout">
       <Layout>
-        <Row className='header px-6' justify={"space-between"} align={"middle"}>
+        <Row className='header pl-16 pr-16' justify={"space-between"} align={"middle"}>
           <Col className='flex align-center'>
-            <img src={logo} alt='' width={100}/>
+            <img src={logo} alt='' height={60}/>
           </Col>
           <Col>
             <Row align={"middle"} >
-              <Col className='mr-6'>
+              <Col className='mr-2 flex flex-col align-end'>
                 <div className='user-name'>
-                  User name
+                  Duong Nguyen
                 </div>
                 <div className='role'>
                   Admin
                 </div>
               </Col>
               <Col>
-                <img className='avatar pointer' width={56} height={56} src={avatar} alt='' />
+                <Dropdown overlay={listAction} trigger={['click']}>
+                  <a onClick={(e) => e.preventDefault()}>
+                    <Space>
+                      <img className='avatar pointer' width={40} height={40} src={avatar} alt='' />
+                    </Space>
+                  </a>
+                </Dropdown>
               </Col>
-              <div onClick={openModalLogout} align={"middle"} className='logout pointer ml-4 p-2-5 flex align-center'>
+              {/* <div onClick={openModalLogout} align={"middle"} className='logout pointer ml-4 p-2-5 flex align-center'>
                 <img src={logoutIcon} alt='' />
                 <div className='ml-1'>Đăng xuất</div>
-              </div>
+              </div> */}
             </Row>
           </Col>
         </Row>
@@ -119,14 +152,15 @@ export const MainLayout = ({ ...props }) => {
             </div>
           </Sider>
           <Layout className='bg-white'>
-            <div className='flex flex-col m-6'>
+            <div className='flex flex-col px-6 py-2'>
               <BreadcrumbCommon
+                pageName={pageName}
                 breadcrumb={breadcrumb}
                 title={title}
                 redirect={redirect}
               />
             </div>
-            <Content className='content flex flex-col p-5 mx-6 mb-6 bg-white'>
+            <Content className='content flex flex-col mx-6 mb-2 bg-white'>
               {props.children}
             </Content>
           </Layout>

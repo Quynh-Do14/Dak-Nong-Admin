@@ -1,4 +1,4 @@
-import { Button, Col, Dropdown, Input, Menu, Row, Select, Space, Table } from 'antd';
+import { Button, Col, Dropdown, Image, Input, Menu, Row, Select, Space, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import React, { useEffect, useState } from 'react';
 import { MenuOutlined, PlusOutlined } from '@ant-design/icons';
@@ -12,10 +12,13 @@ import DialogConfirmCommon from '../../infrastucture/common/components/modal/dia
 import { useRecoilValue } from 'recoil';
 import { CategoryState } from '../../core/common/atoms/category/categoryState';
 import { DistrictState } from '../../core/common/atoms/district/districtState';
-import { convertTimeOnly } from '../../infrastucture/utils/helper';
+import { convertTimeOnly, showImageCommon } from '../../infrastucture/utils/helper';
 import { PaginationCommon } from '../../infrastucture/common/components/pagination/Pagination';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
 import { InputSearchCommon } from '../../infrastucture/common/components/input/input-text-search';
+import { TitleTableCommon } from '../../infrastucture/common/components/text/title-table-common';
+import { ActionCommon } from '../../infrastucture/common/components/action/action-common';
+import { RateCommon } from '../../infrastucture/common/components/rate/rate-common';
 
 let timeout
 export const ListDestinationManagement = () => {
@@ -65,21 +68,22 @@ export const ListDestinationManagement = () => {
 
     const onChangeSearchText = (e) => {
         setSearchText(e.target.value);
+        setPage(1);
         clearTimeout(timeout);
         timeout = setTimeout(() => {
-            onSearch(e.target.value, pageSize, page, districtId, categoryId).then((_) => { });
+            onSearch(e.target.value, pageSize, 1, districtId, categoryId).then((_) => { });
         }, Constants.DEBOUNCE_SEARCH);
     };
     const onChangePage = async (value) => {
         setPage(value);
-        await onSearch(searchText, pageSize, value).then((_) => { });
+        await onSearch(searchText, pageSize, value, districtId, categoryId).then((_) => { });
     };
 
     const onPageSizeChanged = async (value) => {
         setPageSize(value);
         setSearchText("");
         setPage(1);
-        await onSearch(searchText, value, page).then((_) => { });
+        await onSearch(searchText, value, page, districtId, categoryId).then((_) => { });
     };
 
     const onOpenModalDelete = (id) => {
@@ -100,12 +104,14 @@ export const ListDestinationManagement = () => {
         setIsDeleteModal(false);
     };
     const onChangeQuanHuyen = (value) => {
-        setDictrictId(value)
-        onSearch("", pageSize, page, value, categoryId).then((_) => { });
+        setDictrictId(value);
+        setPage(1);
+        onSearch(searchText, pageSize, 1, value, categoryId).then((_) => { });
     };
     const onChangeDanhMuc = (value) => {
-        setCategoryId(value)
-        onSearch("", pageSize, page, districtId, value).then((_) => { });
+        setCategoryId(value);
+        setPage(1);
+        onSearch(searchText, pageSize, 1, districtId, value).then((_) => { });
     };
     const onNavigate = (id) => {
         navigate(`${(ROUTE_PATH.VIEW_DESTINATION).replace(`${Constants.UseParams.Id}`, "")}${id}`);
@@ -125,7 +131,7 @@ export const ListDestinationManagement = () => {
     return (
         <MainLayout breadcrumb={"Quản lý điểm đến"} title={"Danh sách điểm đến"} redirect={""}>
             <div className='flex flex-col header-page'>
-                <Row className='filter-page px-5 py-2-5 mb-10' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
+                <Row className='filter-page mb-2 py-2-5' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
                     <Col xs={24} sm={24} lg={16}>
                         <Row align={"middle"} gutter={[10, 10]}>
                             <Col xs={24} sm={12} lg={8}>
@@ -160,7 +166,7 @@ export const ListDestinationManagement = () => {
                                     }
                                 </Select>
                             </Col>
-                            <Col className='select-search' xs={24} sm={12} lg={8}>
+                            {/* <Col className='select-search' xs={24} sm={12} lg={8}>
                                 <Select
                                     value={categoryId != null ? categoryId : null}
                                     placeholder={"Chọn danh mục"}
@@ -184,21 +190,21 @@ export const ListDestinationManagement = () => {
                                         })
                                     }
                                 </Select>
-                            </Col>
+                            </Col> */}
                         </Row>
 
                     </Col>
                     <Col>
-                        <ButtonCommon classColor="gradient" onClick={() => navigate(ROUTE_PATH.ADD_DESTINATION)} >Thêm mới</ButtonCommon>
+                        <ButtonCommon icon={<PlusOutlined />} classColor="black" onClick={() => navigate(ROUTE_PATH.ADD_DESTINATION)} >Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
-                <div className='title-page pt-5 pb-7'>Danh sách điểm đến</div>
+                {/* <div className='title-page pt-5 pb-7'>Danh sách điểm đến</div> */}
             </div>
             <div className='flex-1 auto bg-white content-page'>
                 <Table
                     dataSource={data}
                     pagination={false}
-                    className='table-common'
+                    className="table-common"
                 >
                     <Column
                         title={"STT"}
@@ -212,41 +218,93 @@ export const ListDestinationManagement = () => {
                         )}
                     />
                     <Column
-                        title={"Tên điểm đến"}
+                        title={
+                            <TitleTableCommon
+                                title="Hình ảnh"
+                                width="100px"
+                            />
+                        }
+                        key={"hinhAnh"}
+                        dataIndex={"hinhAnh"}
+                        render={(val) => {
+                            return (
+                                <Image
+                                    src={showImageCommon(val)} alt="image" width={80} height={48}
+                                />
+                            )
+                        }}
+                    />
+                    <Column
+                        title={
+                            <TitleTableCommon
+                                title="Tên địa điểm"
+                                width="200px"
+                            />
+                        }
                         key={"tenDiaDiem"}
                         dataIndex={"tenDiaDiem"}
-                        width={"300px"}
                     />
                     <Column
-                        title={"Địa chỉ"}
-                        key={"diaChi"}
-                        dataIndex={"diaChi"}
-                        width={"300px"}
-                    />
-                    <Column
-                        title={"Email liên hệ"}
-                        key={"emailLienHe"}
-                        dataIndex={"emailLienHe"}
-                    />
-                    <Column
-                        title={"SĐT liên hệ"}
-                        key={"sdtLienHe"}
-                        dataIndex={"sdtLienHe"}
+                        title={
+                            <TitleTableCommon
+                                title="Danh mục"
+                                width="180px"
+                            />
+                        }
+                        key={"tenDanhMuc"}
+                        dataIndex={"tenDanhMuc"}
                         width={"200px"}
                     />
                     <Column
-                        title={"Giờ mở cửa"}
-                        key={"gioDongCua"}
-                        dataIndex={"gioDongCua"}
+                        title={
+                            <TitleTableCommon
+                                title="Số sao trung bình"
+                                width="180px"
+                            />
+                        }
+                        key={"soSaoTrungBinh"}
+                        dataIndex={"soSaoTrungBinh"}
+                        render={(val, record) => {
+                            return (
+                                <RateCommon
+                                    soSao={val}
+                                    luotXem={record.luotXem}
+                                />
+                            )
+                        }
+                        }
+                    />
+                    <Column
+                        title={
+                            <TitleTableCommon
+                                title="Địa chỉ"
+                                width="300px"
+                            />
+                        }
+                        key={"diaChi"}
+                        dataIndex={"diaChi"}
+                    />
+                    <Column
+                        title={
+                            <TitleTableCommon
+                                title="Giờ mở cửa"
+                            />
+                        }
+                        key={"gioMoCua"}
+                        dataIndex={"gioMoCua"}
                         width={"200px"}
                         render={(val) => (
                             <div>{(val)} </div>
                         )}
                     />
                     <Column
-                        title={"Giờ đóng cửa"}
-                        key={"gioMoCua"}
-                        dataIndex={"gioMoCua"}
+                        title={
+                            <TitleTableCommon
+                                title="Giờ đóng cửa"
+                            />
+                        }
+                        key={"gioDongCua"}
+                        dataIndex={"gioDongCua"}
                         width={"200px"}
                         render={(val) => (
                             <div>{(val)} </div>
@@ -258,23 +316,30 @@ export const ListDestinationManagement = () => {
                         dataIndex={"thoiGianGhe"}
                     /> */}
                     <Column
-                        title={"Thao tác"}
+                        title={
+                            <TitleTableCommon
+                                title="Thao tác"
+                            />
+                        }
                         width={"60px"}
                         fixed="right"
                         align='center'
                         render={(action, record) => (
-                            // <CommonPermission permission={Permissions.OrderManagement.Order.action}>
-                            <Space
-                                size="small"
-                            >
-                                <Dropdown
-                                    trigger={["hover"]}
-                                    placement="bottomRight"
-                                    overlay={listAction(record)}
-                                >
-                                    <MenuOutlined className="pointer" />
-                                </Dropdown>
-                            </Space>
+                            // <Space
+                            //     size="small"
+                            // >
+                            //     <Dropdown
+                            //         trigger={["hover"]}
+                            //         placement="bottomRight"
+                            //         overlay={listAction(record)}
+                            //     >
+                            //         <MenuOutlined className="pointer" />
+                            //     </Dropdown>
+                            // </Space>
+                            <ActionCommon
+                                onClickDetail={() => onNavigate(record.idDiaDiem)}
+                                onClickDelete={() => onOpenModalDelete(record.idDiaDiem)}
+                            />
                         )}
                     />
                 </Table>

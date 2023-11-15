@@ -125,7 +125,7 @@ export const ListFestivalManagement = () => {
     return (
         <MainLayout breadcrumb={"Quản lý lễ hội"} title={"Danh sách lễ hội"} redirect={""}>
             <div className='flex flex-col header-page'>
-                <Row className='filter-page px-5 py-2-5 mb-10' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
+                <Row className='filter-page mb-2 py-2-5 mb-5' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
                     <Col xs={24} sm={24} lg={16}>
                         <Row align={"middle"} gutter={[10, 10]}>
                             <Col xs={24} sm={12} lg={8}>

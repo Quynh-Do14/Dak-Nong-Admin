@@ -1,5 +1,6 @@
 import moment from "moment";
-
+import { API, PUBLIC } from "../../core/common/apiLinks";
+import noAvatarProduct from "../../assets/images/no-avatar-product.png"
 export const DebounceInput = (func, delay) => {
     let timer;
     return function (...args) {
@@ -71,6 +72,17 @@ export const reverseConvertTime = (inputTime) => {
     const dateTimeString = `2023-09-24T${inputTime}:00.000Z`;
     const formattedDateTime = new Date(dateTimeString).toISOString();
 
-    console.log(formattedDateTime)
     return formattedDateTime
+}
+
+export const showImageCommon = (img) => {
+    if (!!!img || img == "undefined") {
+        return noAvatarProduct;
+    }
+    if (img?.indexOf("http") == 0) {
+        return img;
+    }
+    else {
+        return `${API}${PUBLIC}/${img}`
+    }
 }
