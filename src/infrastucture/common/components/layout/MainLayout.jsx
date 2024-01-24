@@ -7,6 +7,7 @@ import { ROUTE_PATH } from '../../../../core/common/appRouter';
 import { FullPageLoading } from '../controls/loading';
 import DialogConfirmCommon from '../modal/dialogConfirm';
 import avatar from "../../../../assets/images/avatar.png"
+import profile from "../../../../assets/images/profile.png";
 import logo from "../../../../assets/images/logo.png"
 import logoutIcon from "../../../../assets/images/logout-icon.png"
 import Constants from '../../../../core/common/constant';
@@ -42,12 +43,12 @@ export const MainLayout = ({ ...props }) => {
   };
 
   const onGetListCategoryAsync = async () => {
-    const response = await api.getAllCategory(
-      "",
+    const response = await api.getDanhMucConCuaDanhMuc(
+      `idDanhMuc=${1}`,
       () => { }
     )
-    if (response.data.danhMucs?.length > 0) {
-      setDataCategory(response.data.danhMucs);
+    if (response.result?.length > 0) {
+      setDataCategory(response.result);
     }
   };
 
@@ -101,23 +102,23 @@ export const MainLayout = ({ ...props }) => {
       <Layout>
         <Row className='header pl-16 pr-16' justify={"space-between"} align={"middle"}>
           <Col className='flex align-center'>
-            <img src={logo} alt='' height={60}/>
+            <img src={logo} alt='' height={60} />
           </Col>
           <Col>
             <Row align={"middle"} >
               <Col className='mr-2 flex flex-col align-end'>
                 <div className='user-name'>
-                  Duong Nguyen
+                  {sessionStorage.getItem("firstName")} {sessionStorage.getItem("lastName")}
                 </div>
                 <div className='role'>
-                  Admin
+                  {sessionStorage.getItem("role")}
                 </div>
               </Col>
               <Col>
                 <Dropdown overlay={listAction} trigger={['click']}>
                   <a onClick={(e) => e.preventDefault()}>
                     <Space>
-                      <img className='avatar pointer' width={40} height={40} src={avatar} alt='' />
+                      <img className='avatar pointer' width={50} height={50} src={profile} alt='' />
                     </Space>
                   </a>
                 </Dropdown>

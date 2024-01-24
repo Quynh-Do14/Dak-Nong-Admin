@@ -21,7 +21,7 @@
 }
 
 .main-layout .ant-layout-sider-children {
-    background: #1F1E20;
+    background: #094174;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,23 +32,17 @@
 }
 
 .main-layout .header .user-name {
-    color: #475f7b;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0.15px;
+    color: #094174;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 22px;
 }
 
 .main-layout .header .role {
-    color: #475f7b;
-    font-size: 11px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    /* 218.182% */
-    letter-spacing: 0.15px;
-    text-align: left;
+    color: #fe7524;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
 }
 
 .main-layout .header .logout {

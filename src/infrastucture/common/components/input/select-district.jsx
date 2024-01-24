@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, Select } from "antd";
+import { Select } from "antd";
 import { validateFields } from '../../../utils/helper';
 import { MessageError } from '../controls/MessageError';
 import '../../../../assets/css/common/input.css'
@@ -52,14 +52,14 @@ const InputSelectDistrictCommon = (props) => {
 
     return (
         <div>
-            <Row className='mb-4 select-common'>
-                <Col xs={24} sm={10} lg={10} xl={6} className='title'>
+            <div className='mb-4 input-common'>
+                <div className='title mb-2'>
                     <span>
                         <span className='label'>{label}</span>
                         <span className='ml-1 is-required'>{isRequired ? "*" : ""} </span>
                     </span>
-                </Col>
-                <Col xs={24} sm={14} lg={14} xl={18}>
+                </div>
+                <div>
                     <Select
                         showSearch
                         allowClear={false}
@@ -88,8 +88,8 @@ const InputSelectDistrictCommon = (props) => {
                         }
                     </Select>
                     <MessageError isError={validate[attribute]?.isError || false} message={validate[attribute]?.message || ""} />
-                </Col>
-            </Row>
+                </div>
+            </div>
         </div>
     );
 }

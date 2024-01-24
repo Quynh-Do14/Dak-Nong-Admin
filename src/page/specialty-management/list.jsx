@@ -1,4 +1,4 @@
-import { Button, Col, Dropdown, Input, Menu, Row, Select, Space, Table } from 'antd';
+import { Button, Col, Dropdown, Image, Input, Menu, Row, Select, Space, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import React, { useEffect, useState } from 'react';
 import { MenuOutlined, PlusOutlined } from '@ant-design/icons';
@@ -12,10 +12,12 @@ import DialogConfirmCommon from '../../infrastucture/common/components/modal/dia
 import { useRecoilValue } from 'recoil';
 import { CategoryState } from '../../core/common/atoms/category/categoryState';
 import { DistrictState } from '../../core/common/atoms/district/districtState';
-import { convertTimeOnly } from '../../infrastucture/utils/helper';
+import { convertTimeOnly, showImageCommon } from '../../infrastucture/utils/helper';
 import { PaginationCommon } from '../../infrastucture/common/components/pagination/Pagination';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
 import { InputSearchCommon } from '../../infrastucture/common/components/input/input-text-search';
+import { TitleTableCommon } from '../../infrastucture/common/components/text/title-table-common';
+import { ActionCommon } from '../../infrastucture/common/components/action/action-common';
 
 let timeout
 export const ListSpecialtyManagement = () => {
@@ -125,7 +127,7 @@ export const ListSpecialtyManagement = () => {
     return (
         <MainLayout breadcrumb={"Quản lý đặc sản"} title={"Danh sách đặc sản"} redirect={""}>
             <div className='flex flex-col header-page'>
-                <Row className='filter-page mb-2 py-2-5 mb-5' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
+                <Row className='filter-page mb-2 py-2-5' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
                     <Col xs={24} sm={24} lg={16}>
                         <Row align={"middle"} gutter={[10, 10]}>
                             <Col xs={24} sm={12} lg={8}>
@@ -160,7 +162,7 @@ export const ListSpecialtyManagement = () => {
                                     }
                                 </Select>
                             </Col>
-                            <Col className='select-search' xs={24} sm={12} lg={8}>
+                            {/* <Col className='select-search' xs={24} sm={12} lg={8}>
                                 <Select
                                     value={categoryId != null ? categoryId : null}
                                     placeholder={"Chọn danh mục"}
@@ -184,15 +186,15 @@ export const ListSpecialtyManagement = () => {
                                         })
                                     }
                                 </Select>
-                            </Col>
+                            </Col> */}
                         </Row>
 
                     </Col>
                     <Col>
-                        <ButtonCommon classColor="gradient" onClick={() => navigate(ROUTE_PATH.ADD_SPECIALTY)} >Thêm mới</ButtonCommon>
+                        <ButtonCommon icon={<PlusOutlined />} classColor="orange" onClick={() => navigate(ROUTE_PATH.ADD_SPECIALTY)} >Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
-                <div className='title-page pt-5 pb-7'>Danh sách đặc sản</div>
+                {/* <div className='title-page pt-5 pb-7'>Danh sách điểm đến</div> */}
             </div>
             <div className='flex-1 auto bg-white content-page'>
                 <Table
@@ -211,28 +213,61 @@ export const ListSpecialtyManagement = () => {
                         )}
                     />
                     <Column
-                        title={"Tên đặc sản"}
+                        title={
+                            <TitleTableCommon
+                                title="Hình ảnh"
+                                width="100px"
+                            />
+                        }
+                        key={"hinhAnh"}
+                        dataIndex={"hinhAnh"}
+                        render={(val) => {
+                            return (
+                                <Image
+                                    src={showImageCommon(val)} alt="image" width={80} height={48}
+                                />
+                            )
+                        }}
+                    />
+                    <Column
+                        title={
+                            <TitleTableCommon
+                                title="Tên đặc sản"
+                                width="200px"
+                            />
+                        }
                         key={"tenDiaDiem"}
                         dataIndex={"tenDiaDiem"}
-                        width={"300px"}
                     />
                     <Column
-                        title={"Địa chỉ"}
+                        title={
+                            <TitleTableCommon
+                                title="Địa chỉ"
+                                width="300px"
+                            />
+                        }
                         key={"diaChi"}
                         dataIndex={"diaChi"}
-                        width={"300px"}
                     />
                     <Column
-                        title={"Email liên hệ"}
+                        title={
+                            <TitleTableCommon
+                                title="Email liên hệ"
+                                width={"200px"}
+                            />
+                        }
                         key={"emailLienHe"}
                         dataIndex={"emailLienHe"}
-                        width={"200px"}
                     />
                     <Column
-                        title={"SĐT liên hệ"}
+                        title={
+                            <TitleTableCommon
+                                title="SĐT liên hệ"
+                                width={"200px"}
+                            />
+                        }
                         key={"sdtLienHe"}
                         dataIndex={"sdtLienHe"}
-                        width={"200px"}
                     />
                     {/* <Column
                         title={"Giờ mở cửa"}
@@ -253,29 +288,30 @@ export const ListSpecialtyManagement = () => {
                         )}
                     /> */}
                     <Column
-                        title={"Dữ liệu ảnh"}
-                        key={"thoiGianGhe"}
-                        dataIndex={"thoiGianGhe"}
-                        width={"200px"}
-                    />
-                    <Column
-                        title={"Thao tác"}
+                        title={
+                            <TitleTableCommon
+                                title="Thao tác"
+                            />
+                        }
                         width={"60px"}
                         fixed="right"
                         align='center'
                         render={(action, record) => (
-                            // <CommonPermission permission={Permissions.OrderManagement.Order.action}>
-                            <Space
-                                size="small"
-                            >
-                                <Dropdown
-                                    trigger={["hover"]}
-                                    placement="bottomRight"
-                                    overlay={listAction(record)}
-                                >
-                                    <MenuOutlined className="pointer" />
-                                </Dropdown>
-                            </Space>
+                            // <Space
+                            //     size="small"
+                            // >
+                            //     <Dropdown
+                            //         trigger={["hover"]}
+                            //         placement="bottomRight"
+                            //         overlay={listAction(record)}
+                            //     >
+                            //         <MenuOutlined className="pointer" />
+                            //     </Dropdown>
+                            // </Space>
+                            <ActionCommon
+                                onClickDetail={() => onNavigate(record.idDiaDiem)}
+                                onClickDelete={() => onOpenModalDelete(record.idDiaDiem)}
+                            />
                         )}
                     />
                 </Table>

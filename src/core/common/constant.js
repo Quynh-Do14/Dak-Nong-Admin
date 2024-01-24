@@ -14,15 +14,15 @@ export default class Constants {
                 link: ROUTE_PATH.CATEGORY_NEWS,
                 icon: <DatabaseOutlined />
             },
-            {
-                label: "Danh mục dịch vụ du lịch",
-                link: ROUTE_PATH.CATEGORY_SERVICE,
-                icon: <DatabaseOutlined />
-            },
+            // {
+            //     label: "Danh mục dịch vụ du lịch",
+            //     link: ROUTE_PATH.CATEGORY_SERVICE,
+            //     icon: <DatabaseOutlined />
+            // },
             {
                 label: "Quản lý điểm đến",
                 link: ROUTE_PATH.DESTINATION,
-                icon: <ScheduleOutlined />
+                icon: <EnvironmentOutlined />
             },
             {
                 label: "Quản lý lễ hội",
@@ -35,14 +35,9 @@ export default class Constants {
                 icon: <TagsOutlined />
             },
             {
-                label: "Quản lý bài viết",
+                label: "Quản lý tin tức",
                 link: ROUTE_PATH.NEWS,
                 icon: <ContainerOutlined />
-            },
-            {
-                label: "Quản lý lịch trình",
-                link: ROUTE_PATH.TOUR,
-                icon: <EnvironmentOutlined />
             },
             {
                 label: "Quản lý quận huyện",
@@ -95,13 +90,13 @@ export default class Constants {
         }
         static USER = class {
             static value = "USER";
-            static label = "Người dân";
+            static label = "Người dùng";
         }
         static List = [
             { label: "Quản trị viên", value: "ADMIN" },
             { label: "Ủy ban nhân dân Tỉnh", value: "COMMITTEE" },
             { label: "Sở VHTT&DL", value: "DEPARTMENT" },
-            { label: "Người dân", value: "USER" },
+            { label: "Người dùng", value: "USER" },
         ]
     }
     static DefaultImage = "1"
@@ -131,7 +126,7 @@ export default class Constants {
             static label = "Tour";
         }
         static Festival = class {
-            static value = 7;
+            static value = 23;
             static label = "Lễ hội";
         }
         static News = class {

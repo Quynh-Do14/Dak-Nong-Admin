@@ -57,25 +57,28 @@ const InputTextAreaCommon = (props) => {
     }, [submittedTime]);
     return (
         <div>
-            <Row className='mb-4 input-common'>
-                <Col xs={24} sm={10} lg={10} xl={6} className='title'>
-                    <span >
+            <div className='mb-4 input-common'>
+                <div className='title mb-2'>
+                    <span>
                         <span className='label'>{label}</span>
                         <span className='ml-1 is-required'>{isRequired ? "*" : ""} </span>
                     </span>
-                </Col>
-                <Col xs={24} sm={14} lg={14} xl={18}>
-                    <TextArea
-                        size={size ? size : "middle"}
-                        value={value ? value : ""}
-                        onChange={onChange}
-                        onBlur={() => onBlur(false)}
-                        disabled={disabled}
-                        placeholder={`Nhập ${label}`}
-                    />
-                    <MessageError isError={validate[attribute]?.isError || false} message={validate[attribute]?.message || ""} />
-                </Col>
-            </Row>
+                </div>
+                <div>
+                    <div>
+                        <TextArea
+                            size={size ? size : "middle"}
+                            value={value ? value : ""}
+                            onChange={onChange}
+                            onBlur={() => onBlur(false)}
+                            disabled={disabled}
+                            placeholder={`Nhập ${label}`}
+                            style={{ borderRadius: "8px !important" }}
+                        />
+                        <MessageError isError={validate[attribute]?.isError || false} message={validate[attribute]?.message || ""} />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 };

@@ -17,8 +17,9 @@ code {
 }
 
 .input-common input.ant-input.css-dev-only-do-not-override-pr0fja,
-:where(.css-dev-only-do-not-override-pr0fja).ant-select:not(.ant-select-customize-input) .ant-select-selector {
-  border-radius: 7px;
+.ant-select.w-100.css-dev-only-do-not-override-pr0fja.ant-select-single.ant-select-show-arrow.ant-select-show-search,
+:where(.css-dev-only-do-not-override-pr0fja).ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  border-radius: 8px;
   background: #FFF;
   height: 40px;
 }
@@ -28,10 +29,10 @@ code {
 }
 
 .input-common input.ant-input.css-dev-only-do-not-override-pr0fja,
-.select-common span.ant-select-selection-item,
+:where(.css-dev-only-do-not-override-pr0fja).ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+:where(.css-dev-only-do-not-override-pr0fja).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder,
 .select-search .ant-select-selector,
-.select-search .ant-select-selector span.ant-select-selection-item,
-.input-common input.ant-input-number-input {
+.select-search .ant-select-selector span.ant-select-selection-item {
   color: #475f7b;
   font-family: Roboto;
   font-size: 15px;
@@ -41,13 +42,21 @@ code {
   letter-spacing: 0.15px;
 }
 
+textarea.ant-input.css-dev-only-do-not-override-pr0fja {
+  border-radius: 8px;
+  background: #FFF;
+  height: 200px;
+}
+
 .select-search .ant-select.w-100.css-dev-only-do-not-override-pr0fja.ant-select-single.ant-select-show-arrow {
   height: auto;
 }
 
 .input-common span.ant-input-affix-wrapper.w-100.css-dev-only-do-not-override-pr0fja {
-  border-radius: 7px;
+  border-radius: 8px;
 }
+
+/* button */
 
 .button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.gradient {
   border-radius: 8px;
@@ -69,7 +78,7 @@ code {
 
 .button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.black {
   border-radius: 8px;
-  background: #4361EE;
+  background: #221c38;
   display: flex;
   width: 130px;
   height: 44px;
@@ -85,9 +94,10 @@ code {
   letter-spacing: 0.15px;
 }
 
+
 .button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.blue {
   border-radius: 8px;
-  background: #528DD2;
+  background: #094174;
   display: flex;
   width: 130px;
   height: 44px;
@@ -100,7 +110,9 @@ code {
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
-  letter-spacing: 0.15px
+  letter-spacing: 0.15px;
+  transition: .3s;
+  -webkit-transition: .3s;
 }
 
 .button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.grey {
@@ -120,6 +132,32 @@ code {
   letter-spacing: 0.15px;
 }
 
+.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.orange {
+  border-radius: 8px;
+  background: #fe7524;
+  display: flex;
+  width: 130px;
+  height: 44px;
+  justify-content: center;
+  align-items: center;
+
+  color: #FFF;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  transition: .3s;
+  -webkit-transition: .3s;
+}
+
+.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.orange:hover,
+.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.blue:hover {
+  background: #3283cf;
+}
+
+
 .button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.upload {
   border-radius: 5px;
   background: #E8EAEE;
@@ -136,6 +174,8 @@ code {
   font-weight: 700;
   letter-spacing: 0.15px;
 }
+
+/* button */
 
 .ant-notification-notice.success-message.css-dev-only-do-not-override-pr0fja.ant-notification-notice-closable {
   border-radius: 5px;
@@ -228,8 +268,8 @@ code {
 
 /*  */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -238,7 +278,7 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(197, 188, 188);
+  background: #fe7524;
   border-radius: 10px;
 }
 
@@ -270,3 +310,218 @@ ul.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropd
 .ant-modal-content {
   padding: 0px !important;
 }
+
+.legend-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-align: left;
+  color: #475f7b;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #fff;
+  padding: 0 10px;
+}
+
+.border-add {
+  border: 1px solid #e3e3e3;
+  padding: 30px 20px;
+}
+
+
+/* upload */
+.made-by {
+  text-align: center;
+  padding-top: 50px;
+  color: #896746;
+}
+
+.file-wrapper {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #fe7524;
+  border-radius: 50%;
+  position: relative;
+  margin: auto;
+  margin-top: 5px;
+  left: 0;
+  right: 0;
+}
+
+.file-wrapper:after {
+  content: '+';
+  position: absolute;
+  color: #fe7524;
+  top: 0;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: max-content;
+  height: max-content;
+  display: block;
+  max-height: 85px;
+  font-size: 70px;
+  font-weight: bolder;
+}
+
+.file-wrapper:before {
+  content: 'Tải ảnh lên';
+  color: #fe7524;
+  font-size: 18px !important;
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: -10px auto;
+  bottom: 48px;
+  width: max-content;
+  height: max-content;
+  font-size: 0.75em;
+}
+
+.file-wrapper:hover:after {
+  font-size: 73px;
+}
+
+.file-wrapper .close-btn {
+  display: none;
+}
+
+input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 99999;
+  cursor: pointer;
+}
+
+.file-set {
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: transparent;
+  padding: 10px;
+  border-width: 0px;
+}
+
+.file-set:hover {
+  transition: all 0.5s ease-out;
+  filter: brightness(110%);
+}
+
+.file-set:before {
+  color: transparent;
+}
+
+.file-set:after {
+  color: transparent;
+}
+
+.file-set .close-btn {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  display: block;
+  background: #000;
+  color: #fff;
+  top: 0;
+  right: 0;
+  font-size: 25px;
+  text-align: center;
+  line-height: 1.5;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.file-set>input {
+  pointer-events: none;
+}
+
+p.ant-upload-text {
+  color: #094174 !important;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 20px;
+  text-align: center;
+  margin: 20px 0 20px;
+
+  small {
+    display: block;
+    font-size: 15px;
+    padding-top: 8px;
+    color: gray;
+  }
+}
+
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 10px auto;
+
+  .avatar-edit {
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    top: 10px;
+
+    input {
+      display: none;
+
+      +label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #FFFFFF;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+          background: #f1f1f1;
+          border-color: #d6d6d6;
+        }
+
+        &:after {
+          content: "\f040";
+          font-family: 'FontAwesome';
+          color: #757575;
+          position: absolute;
+          top: 10px;
+          left: 0;
+          right: 0;
+          text-align: center;
+          margin: auto;
+        }
+      }
+    }
+  }
+
+  .avatar-preview {
+    width: 192px;
+    height: 192px;
+    position: relative;
+    border-radius: 100%;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+
+    >div {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
+
+/* upload */

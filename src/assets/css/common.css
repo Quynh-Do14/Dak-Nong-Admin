@@ -5,16 +5,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500;600&family=Noto+Sans+JP:wght@400;500&family=Signika+Negative&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Mulish:wght@500;600&family=Noto+Sans+JP:wght@400;500&family=Signika+Negative&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Alexandria&family=Gowun+Batang&display=swap');
+
 * {
     /* font-family: "Roboto"; */
-    /* font-family: 'Noto Sans JP', sans-serif; */
+    font-family: 'Noto Sans JP', sans-serif;
     /* font-family: 'Mulish', sans-serif; */
     /* font-family: 'Signika Negative', sans-serif; */
-    font-family: 'Inter', sans-serif;
+    /* font-family: 'Inter', sans-serif; */
+    /* font-family: 'Source Serif 4', serif; */
 }
 
 .main-layout .sider ul.ant-menu.ant-menu-root.ant-menu-vertical.ant-menu-light.menu.css-dev-only-do-not-override-pr0fja {
-    background: #1F1E20;
+    background: #094174;
     display: flex;
     padding: 25px 15px;
     flex-direction: column;
@@ -40,7 +43,7 @@
 }
 
 .main-layout .sider li.ant-menu-item.menu-title {
-    color: rgba(255, 255, 255, 0.40);
+    color: #ffffff;
     font-size: 15px;
     font-style: normal;
     font-weight: 700;
@@ -50,15 +53,17 @@
     height: 48px;
     padding: 10px 15px;
     align-items: center;
+    transition: .3s;
+    -webkit-transition: .3s;
 }
 
 .main-layout .sider li.ant-menu-item.menu-title:hover {
     border-radius: 5px;
     border: 1px solid #80EA66;
-    background: #1F1E20;
+    background: #fe7524;
     box-shadow: 6px 4px 12px 0px rgba(152, 243, 109, 0.40);
 
-    color: #63B655;
+    color: #fff;
     font-family: Roboto;
     font-size: 15px;
     font-style: normal;
@@ -70,8 +75,8 @@
 
 .main-layout .sider li.ant-menu-item.menu-title.active {
     border-radius: 5px;
-    background: #9E9E9E;
-    color: #FFF;
+    background: #fe7524;
+    color: #383838;
     font-size: 15px;
     font-style: normal;
     font-weight: 700;
@@ -81,6 +86,13 @@
     height: 48px;
     padding: 10px 15px;
     align-items: center;
+    transition: .3s;
+    -webkit-transition: .3s;
+}
+
+.main-layout .sider li.ant-menu-item.menu-title.active:hover {
+    background: #094174;
+    color: #fff;
 }
 
 .main-layout .content .header-page .filter-page {
@@ -233,10 +245,6 @@
     height: 34px;
 }
 
-.input-common textarea.ant-input.css-dev-only-do-not-override-pr0fja {
-    border-radius: 0px !important;
-}
-
 .input-common input.ant-input-number-input,
 .input-common textarea.ant-input.css-dev-only-do-not-override-pr0fja,
 .input-common .ant-picker .ant-picker-input>input {
@@ -321,13 +329,13 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
 
 .container-pagination .ant-select-selector {
     border-radius: 6px !important;
-    border-color: #475f7b !important;
-    color: #475f7b !important;
+    border-color: #094174 !important;
+    color: #094174 !important;
 
 }
 
 .container-pagination .ant-pagination li {
-    color: #475f7b !important;
+    color: #094174 !important;
     border-radius: 4px;
 }
 
@@ -343,19 +351,21 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
 
 /* .container-pagination .ant-pagination .ant-pagination-disabled button:hover */
     {
-    color: #475f7b !important;
+    color: #094174 !important;
     background-color: white !important;
     opacity: 50%;
 }
 
 .container-pagination .ant-pagination .ant-pagination-item-active {
     font-weight: 500;
-    background: #4361EE !important;
-    border-color: #4361EE;
+    background: #fe7524 !important;
+    border-color: #fe7524;
+    transition: .3s;
+    -webkit-transition: .3s;
 }
 
 .container-pagination .ant-pagination .ant-pagination-item-active:hover {
-    background: #fff !important;
+    background: #094174 !important;
     border-color: #4361EE;
 }
 
@@ -363,12 +373,9 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
     color: #fff !important;
 }
 
-:where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item-active a:hover {
-    color: #4361EE !important;
-}
 
 :where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item a {
-    color: #475f7b;
+    color: #094174;
 }
 
 .container-pagination a {
@@ -384,7 +391,7 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
 }
 
 .container-pagination .show-title {
-    color: #475f7b;
+    color: #094174;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

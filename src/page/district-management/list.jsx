@@ -1,7 +1,7 @@
 import { Button, Col, Dropdown, Input, Menu, Row, Space, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import React, { useEffect, useState } from 'react';
-import { MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined, PlusOutlined } from '@ant-design/icons';
 import api from '../../infrastucture/api';
 import { FullPageLoading } from '../../infrastucture/common/components/controls/loading';
 import Constants from '../../core/common/constant';
@@ -12,6 +12,8 @@ import DialogConfirmCommon from '../../infrastucture/common/components/modal/dia
 import { InputSearchCommon } from '../../infrastucture/common/components/input/input-text-search';
 import { PaginationCommon } from '../../infrastucture/common/components/pagination/Pagination';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
+import { TitleTableCommon } from '../../infrastucture/common/components/text/title-table-common';
+import { ActionCommon } from '../../infrastucture/common/components/action/action-common';
 
 let timeout
 export const ListDistrictManagement = () => {
@@ -97,20 +99,24 @@ export const ListDistrictManagement = () => {
     return (
         <MainLayout breadcrumb={"Quản lý quận huyện"} title={"Danh sách quận huyện"} redirect={""}>
             <div className='flex flex-col header-page'>
-                <Row className='filter-page mb-2 py-2-5 mb-5' justify={"space-between"} align={"middle"}>
-                    <Col xs={14} sm={14} md={10} lg={8}>
-                        <InputSearchCommon
-                            placeholder="Tìm kiếm theo tên..."
-                            value={searchText}
-                            onChange={onChangeSearchText}
-                            disabled={false}
-                        />
+                <Row className='filter-page mb-2 py-2-5' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
+                    <Col xs={24} sm={24} lg={16}>
+                        <Row align={"middle"} gutter={[10, 10]}>
+                            <Col xs={24} sm={12} lg={8}>
+                                <InputSearchCommon
+                                    placeholder="Tìm kiếm theo tên..."
+                                    value={searchText}
+                                    onChange={onChangeSearchText}
+                                    disabled={false}
+                                />
+                            </Col>
+                        </Row>
                     </Col>
                     <Col>
-                        <ButtonCommon classColor="gradient" onClick={() => navigate(ROUTE_PATH.ADD_DISTRICT)} >Thêm mới</ButtonCommon>
+                        <ButtonCommon icon={<PlusOutlined />} classColor="orange" onClick={() => navigate(ROUTE_PATH.ADD_DISTRICT)} >Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
-                <div className='title-page pt-5 pb-7'>Danh sách quận huyện</div>
+                {/* <div className='title-page pt-5 pb-7'>Danh sách điểm đến</div> */}
             </div>
             <div className='flex-1 auto bg-white content-page'>
                 <Table
@@ -127,29 +133,39 @@ export const ListDistrictManagement = () => {
                         )}
                     />
                     <Column
-                        title={"Tên quận huyện"}
+                        title={
+                            <TitleTableCommon
+                                title="Tên quận huyện"
+                            />
+                        }
                         key={"tenQuanHuyen"}
                         dataIndex={"tenQuanHuyen"}
                     />
                     <Column
-                        title={"Thao tác"}
-                        // width={"60px"}
+                        title={
+                            <TitleTableCommon
+                                title="Thao tác"
+                            />
+                        }
+                        width={"60px"}
                         fixed="right"
                         align='center'
                         render={(action, record) => (
-                            // <CommonPermission permission={Permissions.OrderManagement.Order.action}>
-                            <Space
-                                size="small"
-                            >
-                                <Dropdown
-                                    trigger={["hover"]}
-                                    placement="bottomRight"
-                                    overlay={listAction(record)}
-                                >
-                                    <MenuOutlined className="pointer" />
-                                </Dropdown>
-                            </Space>
-                            // </CommonPermission>
+                            // <Space
+                            //     size="small"
+                            // >
+                            //     <Dropdown
+                            //         trigger={["hover"]}
+                            //         placement="bottomRight"
+                            //         overlay={listAction(record)}
+                            //     >
+                            //         <MenuOutlined className="pointer" />
+                            //     </Dropdown>
+                            // </Space>
+                            <ActionCommon
+                                onClickDetail={() => onNavigate(record.idQuanHuyen)}
+                                onClickDelete={() => onOpenModalDelete(record.idQuanHuyen)}
+                            />
                         )}
                     />
                 </Table>

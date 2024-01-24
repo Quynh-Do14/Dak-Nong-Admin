@@ -36,13 +36,14 @@ export const ListDestinationManagement = () => {
     const dataDistrict = useRecoilValue(DistrictState);
 
     const [districtId, setDictrictId] = useState();
-    const [categoryId, setCategoryId] = useState(Constants.CategoryConfig.Destination.value);
+    const [categoryId, setCategoryId] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
         setDictrictId(dataDistrict[0]?.idQuanHuyen);
-        // setCategoryId(dataCategory[0]?.idDanhMucDiaDiem);
+        setCategoryId(dataCategory[0]?.idDanhMucDiaDiem);
     }, [dataDistrict, dataCategory])
+    console.log('dataCategory',dataCategory);
     const checkCondition = () => {
         return dataDistrict && dataCategory ? true : false
     }
@@ -58,7 +59,7 @@ export const ListDestinationManagement = () => {
             setTotalItem(response.data.totalItems);
         }
     }
-    const onSearch = async (keyWord = "", limit = pageSize, page = 1, idQuanHuyen = dataDistrict[0]?.idQuanHuyen, idDanhMuc = Constants.CategoryConfig.Destination.value) => {
+    const onSearch = async (keyWord = "", limit = pageSize, page = 1, idQuanHuyen = dataDistrict[0]?.idQuanHuyen, idDanhMuc = dataCategory[0]?.idDanhMucDiaDiem) => {
         await onGetListLocationAsync({ keyWord: keyWord, limit: limit, page: page, idQuanHuyen: idQuanHuyen, idDanhMuc: idDanhMuc });
     };
 
@@ -166,39 +167,38 @@ export const ListDestinationManagement = () => {
                                     }
                                 </Select>
                             </Col>
-                            {/* <Col className='select-search' xs={24} sm={12} lg={8}>
+                            <Col className='select-search' xs={24} sm={12} lg={8}>
                                 <Select
                                     value={categoryId != null ? categoryId : null}
                                     placeholder={"Chọn danh mục"}
                                     className="w-100"
                                     onChange={onChangeDanhMuc}
-                                    disabled={true}
+                                    disabled={false}
                                     getPopupContainer={(trigger) => trigger.parentNode}
                                 >
                                     {
-                                        Constants.CategoryConfig.list && Constants.CategoryConfig.list.length &&
-                                        Constants.CategoryConfig.list.map((item, index) => {
+                                        dataCategory && dataCategory.length &&
+                                        dataCategory.map((item, index) => {
                                             return (
                                                 <Select.Option
                                                     key={index}
-                                                    value={item.value}
-                                                    title={item.label}
+                                                    value={item.idDanhMucDiaDiem}
+                                                    title={item.tenDanhMuc}
                                                 >
-                                                    {item.label}
+                                                    {item.tenDanhMuc}
                                                 </Select.Option>
                                             );
                                         })
                                     }
                                 </Select>
-                            </Col> */}
+                            </Col>
                         </Row>
 
                     </Col>
                     <Col>
-                        <ButtonCommon icon={<PlusOutlined />} classColor="black" onClick={() => navigate(ROUTE_PATH.ADD_DESTINATION)} >Thêm mới</ButtonCommon>
+                        <ButtonCommon icon={<PlusOutlined />} classColor="orange" onClick={() => navigate(ROUTE_PATH.ADD_DESTINATION)} >Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
-                {/* <div className='title-page pt-5 pb-7'>Danh sách điểm đến</div> */}
             </div>
             <div className='flex-1 auto bg-white content-page'>
                 <Table
@@ -288,11 +288,11 @@ export const ListDestinationManagement = () => {
                         title={
                             <TitleTableCommon
                                 title="Giờ mở cửa"
+                                width={"100px"}
                             />
                         }
                         key={"gioMoCua"}
                         dataIndex={"gioMoCua"}
-                        width={"200px"}
                         render={(val) => (
                             <div>{(val)} </div>
                         )}
@@ -301,11 +301,11 @@ export const ListDestinationManagement = () => {
                         title={
                             <TitleTableCommon
                                 title="Giờ đóng cửa"
+                                width={"100px"}
                             />
                         }
                         key={"gioDongCua"}
                         dataIndex={"gioDongCua"}
-                        width={"200px"}
                         render={(val) => (
                             <div>{(val)} </div>
                         )}

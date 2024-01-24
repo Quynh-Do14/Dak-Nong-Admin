@@ -1,4 +1,4 @@
-import { Button, Col, Dropdown, Input, Menu, Row, Space, Table } from 'antd';
+import { Button, Col, Dropdown, Image, Input, Menu, Row, Space, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import React, { useEffect, useState } from 'react';
 import { MenuOutlined, PlusOutlined } from '@ant-design/icons';
@@ -9,10 +9,12 @@ import { MainLayout } from '../../infrastucture/common/components/layout/MainLay
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_PATH } from '../../core/common/appRouter';
 import DialogConfirmCommon from '../../infrastucture/common/components/modal/dialogConfirm';
-import { convertDateOnly } from '../../infrastucture/utils/helper';
+import { convertDateOnly, showImageCommon } from '../../infrastucture/utils/helper';
 import { PaginationCommon } from '../../infrastucture/common/components/pagination/Pagination';
 import { InputSearchCommon } from '../../infrastucture/common/components/input/input-text-search';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
+import { ActionCommon } from '../../infrastucture/common/components/action/action-common';
+import { TitleTableCommon } from '../../infrastucture/common/components/text/title-table-common';
 
 let timeout
 export const ListNewsManagement = () => {
@@ -99,20 +101,24 @@ export const ListNewsManagement = () => {
     return (
         <MainLayout breadcrumb={"Quản lý bài viết"} title={"Danh sách bài viết"} redirect={""}>
             <div className='flex flex-col header-page'>
-                <Row className='filter-page mb-2 py-2-5 mb-5' justify={"space-between"} align={"middle"}>
-                    <Col xs={14} sm={14} md={10} lg={8}>
-                        <InputSearchCommon
-                            placeholder="Tìm kiếm theo tên..."
-                            value={searchText}
-                            onChange={onChangeSearchText}
-                            disabled={false}
-                        />
+                <Row className='filter-page mb-2 py-2-5' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
+                    <Col xs={24} sm={24} lg={16}>
+                        <Row align={"middle"} gutter={[10, 10]}>
+                            <Col xs={24} sm={12} lg={8}>
+                                <InputSearchCommon
+                                    placeholder="Tìm kiếm theo tên..."
+                                    value={searchText}
+                                    onChange={onChangeSearchText}
+                                    disabled={false}
+                                />
+                            </Col>
+                        </Row>
+
                     </Col>
                     <Col>
-                        <ButtonCommon classColor="gradient" onClick={() => navigate(ROUTE_PATH.ADD_NEWS)} >Thêm mới</ButtonCommon>
+                        <ButtonCommon icon={<PlusOutlined />} classColor="orange" onClick={() => navigate(ROUTE_PATH.ADD_NEWS)} >Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
-                <div className='title-page pt-5 pb-7'>Danh sách bài viết</div>
             </div>
             <div className='flex-1 auto bg-white content-page'>
                 <Table
@@ -132,56 +138,89 @@ export const ListNewsManagement = () => {
                         )}
                     />
                     <Column
-                        title={"Tiêu đề"}
+                        title={
+                            <TitleTableCommon
+                                title="Hình ảnh"
+                                width="100px"
+                            />
+                        }
+                        key={"hinhAnh"}
+                        dataIndex={"hinhAnh"}
+                        render={(val) => {
+                            return (
+                                <Image
+                                    src={showImageCommon(val)} alt="image" width={80} height={48}
+                                />
+                            )
+                        }}
+                    />
+                    <Column
+                        title={
+                            <TitleTableCommon
+                                title="Tiêu đề"
+                                width={"200px"}
+                            />
+                        }
                         key={"tieuDe"}
                         dataIndex={"tieuDe"}
-                        width={"200px"}
                     />
                     <Column
-                        title={"Tiêu đề con"}
+                        title={
+                            <TitleTableCommon
+                                title="Tiêu đề con"
+                                width={"200px"}
+                            />
+                        }
                         key={"tieuDeCon"}
                         dataIndex={"tieuDe"}
-                        width={"200px"}
                     />
                     <Column
-                        title={"Ngày đăng"}
+                        title={
+                            <TitleTableCommon
+                                title="Ngày đăng"
+                                width={"100px"}
+                            />
+                        }
                         key={"ngayDang"}
                         dataIndex={"ngayDang"}
-                        width={"200px"}
                         render={(val) => (
                             <div>{convertDateOnly(val)} </div>
                         )}
                     />
                     <Column
-                        title={"Lượt xem"}
+                        title={
+                            <TitleTableCommon
+                                title="Lượt xem"
+                                width={"100px"}
+                            />
+                        }
                         key={"luotXem"}
                         dataIndex={"luotXem"}
-                        width={"100px"}
                     />
                     <Column
-                        title={"Địa chỉ"}
+                        title={
+                            <TitleTableCommon
+                                title="Địa chỉ"
+                                width={"300px"}
+                            />
+                        }
                         key={"diaChi"}
                         dataIndex={"diaChi"}
-                        width={"300px"}
                     />
                     <Column
-                        title={"Thao tác"}
-                        width={"60px"}
+                        title={
+                            <TitleTableCommon
+                                title="Thao tác"
+                                width={"60px"}
+                            />
+                        }
                         fixed="right"
                         align='center'
                         render={(action, record) => (
-                            // <CommonPermission permission={Permissions.OrderManagement.Order.action}>
-                            <Space
-                                size="small"
-                            >
-                                <Dropdown
-                                    trigger={["hover"]}
-                                    placement="bottomRight"
-                                    overlay={listAction(record)}
-                                >
-                                    <MenuOutlined className="pointer" />
-                                </Dropdown>
-                            </Space>
+                            <ActionCommon
+                                onClickDetail={() => onNavigate(record.idTinTuc)}
+                                onClickDelete={() => onOpenModalDelete(record.idTinTuc)}
+                            />
                         )}
                     />
                 </Table>

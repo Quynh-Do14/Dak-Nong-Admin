@@ -14,6 +14,7 @@ import InputTimePickerCommon from '../../infrastucture/common/components/input/i
 import InputSelectCategoryCommon from '../../infrastucture/common/components/input/select-category';
 import { WarningMessage } from '../../infrastucture/common/components/toast/notificationToast';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
+import UploadMultiFile from '../../infrastucture/common/components/input/upload-multi-file';
 
 export const ViewSpecialtyManagement = () => {
     const [validate, setValidate] = useState({});
@@ -50,10 +51,13 @@ export const ViewSpecialtyManagement = () => {
         if (detailLocation) {
             setDataLocation({
                 tenDiaDiem: detailLocation.tenDiaDiem,
+                tenDiaDiemUS: detailLocation.tenDiaDiemUS,
                 status: 1,
                 diaChi: detailLocation.diaChi,
+                diaChiUS: detailLocation.diaChiUS,
                 uriVideo: detailLocation.uriVideo,
                 moTa: detailLocation.moTa,
+                moTaUS: detailLocation.moTaUS,
                 uriBaiViet: detailLocation.uriBaiViet,
                 idQuanHuyen: detailLocation.idQuanHuyen,
                 idDanhMuc: detailLocation.idDanhMuc,
@@ -155,164 +159,170 @@ export const ViewSpecialtyManagement = () => {
     };
 
     return (
-        <MainLayout breadcrumb={"Quản lý đặc sản"} title={"Xem chi tiết"} redirect={ROUTE_PATH.SPECIALTY}>
-            <div className='flex flex-col header-page'>
-                <div className='title-page pt-5 pb-7'>
-                    Xem thông tin chi tiết đặc sản
-                </div>
-            </div>
-            <div className='main-page h-100 flex-1 auto bg-white px-8 py-4'>
+        <MainLayout breadcrumb={"Quản lý đặc sản"} title={"Thêm đặc sản"} redirect={ROUTE_PATH.SPECIALTY}>
+            <div className='main-page h-100 flex-1 auto bg-white px-4 py-8'>
                 <div className='bg-white'>
-                    <Row gutter={[10, 10]}>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputTextCommon
-                                label={"Tên đặc sản"}
-                                attribute={"tenDiaDiem"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.tenDiaDiem}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputTextCommon
-                                label={"Địa chỉ"}
-                                attribute={"diaChi"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.diaChi}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputTextCommon
-                                label={"URL Video"}
-                                attribute={"uriVideo"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.uriVideo}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputTextCommon
-                                label={"URL bài viết"}
-                                attribute={"uriBaiViet"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.uriBaiViet}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputSelectDistrictCommon
-                                label={"Quận huyện"}
-                                attribute={"idQuanHuyen"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.idQuanHuyen}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-
-                            />
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputTextCommon
-                                label={"Email liên hệ"}
-                                attribute={"emailLienHe"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.emailLienHe}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col>
-                        {/* <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputTimePickerCommon
-                                label={"Giờ mở cửa"}
-                                attribute={"gioMoCua"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.gioMoCua}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputTimePickerCommon
-                                label={"Giờ đóng cửa"}
-                                attribute={"gioDongCua"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.gioDongCua}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col> */}
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputNumberCommon
-                                label={"Thời gian ghé"}
-                                attribute={"thoiGianGhe"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.thoiGianGhe}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputTextCommon
-                                label={"SĐT liên hệ"}
-                                attribute={"sdtLienHe"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.sdtLienHe}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <InputTextAreaCommon
-                                label={"Mô tả"}
-                                attribute={"moTa"}
-                                isRequired={true}
-                                dataAttribute={dataLocation.moTa}
-                                setData={setDataLocation}
-                                disabled={false}
-                                validate={validate}
-                                setValidate={setValidate}
-                                submittedTime={submittedTime}
-                            />
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                    <Row>
+                        <Col xs={24} sm={24} md={10} lg={7} xl={5} className='border-add flex justify-center'>
+                            <div className='legend-title'>Thêm mới ảnh</div>
                             <UploadFileCommon
-                                label={'Hình ảnh'}
+                                label={''}
+                                dataAttribute={dataLocation.hinhAnh}
                             // handleUpload={handleUpload}
                             />
+                            {/* <div className='aaaaa'>Thêm thông tin mới</div> */}
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={17} xl={19} className='border-add'>
+                            <div className='legend-title'>Thêm thông tin mới</div>
+                            <Row gutter={[30, 0]}>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"Tên đặc sản"}
+                                        attribute={"tenDiaDiem"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.tenDiaDiem}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"Tên đặc sản (Tiếng anh)"}
+                                        attribute={"tenDiaDiemUS"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.tenDiaDiemUS}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"Địa chỉ"}
+                                        attribute={"diaChi"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.diaChi}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"Địa chỉ (Tiếng anh)"}
+                                        attribute={"diaChiUS"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.diaChiUS}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"URL Video"}
+                                        attribute={"uriVideo"}
+                                        isRequired={false}
+                                        dataAttribute={dataLocation.uriVideo}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"URL bài viết"}
+                                        attribute={"uriBaiViet"}
+                                        isRequired={false}
+                                        dataAttribute={dataLocation.uriBaiViet}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"SĐT liên hệ"}
+                                        attribute={"sdtLienHe"}
+                                        isRequired={false}
+                                        dataAttribute={dataLocation.sdtLienHe}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"Email liên hệ"}
+                                        attribute={"emailLienHe"}
+                                        isRequired={false}
+                                        dataAttribute={dataLocation.emailLienHe}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputSelectDistrictCommon
+                                        label={"Quận huyện"}
+                                        attribute={"idQuanHuyen"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.idQuanHuyen}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+
+                                    />
+                                </Col>
+                                <Col span={24}>
+                                    <InputTextAreaCommon
+                                        label={"Mô tả"}
+                                        attribute={"moTa"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.moTa}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col span={24}>
+                                    <InputTextAreaCommon
+                                        label={"Mô tả (Tiếng anh)"}
+                                        attribute={"moTaUS"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.moTaUS}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col span={24}>
+                                    <UploadMultiFile />
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                 </div>
@@ -320,10 +330,10 @@ export const ViewSpecialtyManagement = () => {
             <div className='container-btn main-page bg-white p-4 flex flex-col '>
                 <Row justify={"center"}>
                     <Col className='mx-1'>
-                        <ButtonCommon onClick={onBack} classColor="grey">Quay lại</ButtonCommon>
+                        <ButtonCommon onClick={onBack} classColor="blue">Quay lại</ButtonCommon>
                     </Col>
                     <Col className='mx-1'>
-                        <ButtonCommon onClick={onUpdateLocation} classColor="blue">Thêm mới</ButtonCommon>
+                        <ButtonCommon onClick={onUpdateLocation} classColor="orange">Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
             </div >

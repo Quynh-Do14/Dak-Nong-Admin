@@ -60,6 +60,10 @@ export const LoginPage = () => {
             );
             if (login.success == true) {
                 sessionStorage.setItem(Constants.TOKEN, login.data.token)
+                sessionStorage.setItem(Constants.TOKEN, login.data.token);
+                sessionStorage.setItem("firstName", login.data.user.data.firstName);
+                sessionStorage.setItem("lastName", login.data.user.data.lastName);
+                sessionStorage.setItem("role", login.data.user.role);
                 navigate(ROUTE_PATH.MAINLAYOUT);
             }
             return false;

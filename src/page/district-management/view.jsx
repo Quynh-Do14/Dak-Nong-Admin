@@ -82,38 +82,42 @@ export const ViewDistrictManagement = () => {
     };
 
     return (
-        <MainLayout breadcrumb={"Quản lý quận huyện"} title={"Xem chi tiết"} redirect={ROUTE_PATH.DISTRICT}>
-            <div className='flex flex-col header-page'>
-                <div className='title-page pt-5 pb-7'>
-                    Xem thông tin chi tiết quận huyện
-                </div>
-            </div>
-            <div className='main-page h-100 flex-1 auto bg-white px-8 py-4'>
+        <MainLayout breadcrumb={"Quản lý quận huyện"} title={"Thông tin chi tiết"} redirect={ROUTE_PATH.DISTRICT}>
+            <div className='main-page h-100 flex-1 auto bg-white px-4 py-8'>
                 <div className='bg-white'>
-                    <InputTextCommon
-                        label={"Tên quận huyện"}
-                        attribute={"tenQuanHuyen"}
-                        isRequired={true}
-                        dataAttribute={dataDistrict.tenQuanHuyen}
-                        setData={setDataDistrict}
-                        disabled={false}
-                        validate={validate}
-                        setValidate={setValidate}
-                        submittedTime={submittedTime}
-                    />
+                    <Row>
+                        <Col span={24} className='border-add'>
+                            <div className='legend-title'>Chỉnh sửa thông tin</div>
+                            <Row gutter={[30, 0]}>
+                                <Col span={24}>
+                                    <InputTextCommon
+                                        label={"Tên quận huyện"}
+                                        attribute={"tenQuanHuyen"}
+                                        isRequired={true}
+                                        dataAttribute={dataDistrict.tenQuanHuyen}
+                                        setData={setDataDistrict}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
                 </div>
             </div>
             <div className='container-btn main-page bg-white p-4 flex flex-col '>
                 <Row justify={"center"}>
                     <Col className='mx-1'>
-                        <ButtonCommon onClick={onBack} classColor="grey">Quay lại</ButtonCommon>
+                        <ButtonCommon onClick={onBack} classColor="blue">Quay lại</ButtonCommon>
                     </Col>
                     <Col className='mx-1'>
-                        <ButtonCommon onClick={onUpdateDistrict} classColor="blue">Thêm mới</ButtonCommon>
+                        <ButtonCommon onClick={onDetailDistrictAsync} classColor="orange">Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
             </div >
             <FullPageLoading isLoading={loading} />
-        </MainLayout>
+        </MainLayout >
     )
 }
