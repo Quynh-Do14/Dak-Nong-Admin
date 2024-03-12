@@ -522,6 +522,14 @@ h1 {
       background-position: center;
     }
   }
+
+  .avatar-preview.rectangle {
+    border-radius: 15%;
+
+    >div {
+      border-radius: 15%;
+    }
+  }
 }
 
 /* upload */

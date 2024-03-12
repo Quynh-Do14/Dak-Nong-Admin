@@ -12,6 +12,8 @@ import DialogConfirmCommon from '../../infrastucture/common/components/modal/dia
 import { PaginationCommon } from '../../infrastucture/common/components/pagination/Pagination';
 import { InputSearchCommon } from '../../infrastucture/common/components/input/input-text-search';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
+import { TitleTableCommon } from '../../infrastucture/common/components/text/title-table-common';
+import { ActionCommon } from '../../infrastucture/common/components/action/action-common';
 
 let timeout
 export const ListCategoryNewsManagement = () => {
@@ -28,7 +30,7 @@ export const ListCategoryNewsManagement = () => {
     const navigate = useNavigate();
 
     const onGetListCategoryAsync = async ({ keyWord = "", limit = pageSize, page = 1 }) => {
-        const response = await api.getAllCategoryByParentId(`${Constants.Params.parentId}=${Constants.CategoryConfig.News.value}&${Constants.Params.search}=${keyWord.trim()}&${Constants.Params.limit}=${limit}&${Constants.Params.page}= ${page}`,
+        const response = await api.getAllCategoryByParentId(`${Constants.Params.parentId}=${Constants.CategoryConfig.Destination.value}&${Constants.Params.search}=${keyWord.trim()}&${Constants.Params.limit}=${limit}&${Constants.Params.page}= ${page}`,
             setLoading
         )
         setData(response.data.danhMucParentId);
@@ -81,7 +83,7 @@ export const ListCategoryNewsManagement = () => {
     };
 
     const onNavigate = (idDanhMucDiaDiem) => {
-        navigate(`${(ROUTE_PATH.VIEW_CATEGORY_NEWS).replace(`${Constants.UseParams.Id}`, "")}${idDanhMucDiaDiem}`);
+        navigate(`${(ROUTE_PATH.VIEW_CATEGORY).replace(`${Constants.UseParams.Id}`, "")}${idDanhMucDiaDiem}`);
     }
     const listAction = (record) => {
         return (
@@ -96,7 +98,7 @@ export const ListCategoryNewsManagement = () => {
         )
     };
     return (
-        <MainLayout breadcrumb={"Quản lý danh mục bài viết"} title={"Danh sách danh mục bài viết"} redirect={""}>
+        <MainLayout breadcrumb={"Quản lý danh mục"} title={"Danh sách danh mục"} redirect={""}>
             <div className='flex flex-col header-page'>
                 <Row className='filter-page mb-2 py-2-5 mb-5' justify={"space-between"} align={"middle"}>
                     <Col xs={14} sm={14} md={10} lg={8}>
@@ -108,10 +110,10 @@ export const ListCategoryNewsManagement = () => {
                         />
                     </Col>
                     <Col>
-                        <ButtonCommon classColor="gradient" onClick={() => navigate(ROUTE_PATH.ADD_CATEGORY_NEWS)} >Thêm mới</ButtonCommon>
+                        <ButtonCommon icon={<PlusOutlined />} classColor="orange" onClick={() => navigate(ROUTE_PATH.ADD_CATEGORY)} >Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
-                <div className='title-page pt-5 pb-7'>Danh sách danh mục bài viết</div>
+                <div className='title-page pt-5 pb-7'>Danh sách danh mục</div>
             </div>
             <div className='flex-1 auto bg-white content-page'>
                 <Table
@@ -131,28 +133,40 @@ export const ListCategoryNewsManagement = () => {
                         )}
                     />
                     <Column
-                        title={"Tên danh mục"}
+                        title={
+                            <TitleTableCommon
+                                title="Tên danh mục"
+                            />
+                        }
                         key={"tenDanhMuc"}
                         dataIndex={"tenDanhMuc"}
                     />
                     <Column
-                        title={"Thao tác"}
-                        // width={"60px"}
+                        title={
+                            <TitleTableCommon
+                                title="Thao tác"
+                            />
+                        }
+                        width={"60px"}
                         fixed="right"
                         align='center'
                         render={(action, record) => (
                             // <CommonPermission permission={Permissions.OrderManagement.Order.action}>
-                            <Space
-                                size="small"
-                            >
-                                <Dropdown
-                                    trigger={["hover"]}
-                                    placement="bottomRight"
-                                    overlay={listAction(record)}
-                                >
-                                    <MenuOutlined className="pointer" />
-                                </Dropdown>
-                            </Space>
+                            // <Space
+                            //     size="small"
+                            // >
+                            //     <Dropdown
+                            //         trigger={["hover"]}
+                            //         placement="bottomRight"
+                            //         overlay={listAction(record)}
+                            //     >
+                            //         <MenuOutlined className="pointer" />
+                            //     </Dropdown>
+                            // </Space>
+                            <ActionCommon
+                                onClickDetail={() => onNavigate(record.idDanhMucDiaDiem)}
+                                onClickDelete={() => onOpenModalDelete(record.idDanhMucDiaDiem)}
+                            />
                             // </CommonPermission>
                         )}
                     />

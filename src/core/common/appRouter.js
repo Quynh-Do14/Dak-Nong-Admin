@@ -20,6 +20,11 @@ export const ROUTE_PATH = {
     VIEW_CATEGORY_SERVICE: `${PREFIX}/category_service/view/:id`,
     ADD_CATEGORY_SERVICE: `${PREFIX}/category_service/add`,
 
+    CATEGORY: `${PREFIX}/category`,
+    VIEW_CATEGORY: `${PREFIX}/category/view/:id`,
+    ADD_CATEGORY: `${PREFIX}/category/add`,
+
+
     DESTINATION: `${PREFIX}/destination`,
     VIEW_DESTINATION: `${PREFIX}/destination/view/:id`,
     ADD_DESTINATION: `${PREFIX}/destination/add`,
@@ -52,7 +57,8 @@ export const ROUTE_PATH = {
 };
 export class Endpoint {
     static Auth = class {
-        static Login = "/auth/login";
+        // static Login = "/auth/login";
+        static Login = "/auth/login/admin"
     }
 
     static Module = class {

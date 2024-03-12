@@ -213,7 +213,7 @@ const request = {
       body: data,
       redirect: "follow",
     }).catch((e) => {
-      console.log(e);
+      console.log('e', e);
     });
     console.log(result);
     if (result.ok) {
@@ -241,6 +241,7 @@ const request = {
     }).catch((e) => {
       console.log(e);
     });
+    console.log('result', result);
     if (result.ok) {
       SuccessMessage("Đăng nhập thành công", "")
       setLoading(false);

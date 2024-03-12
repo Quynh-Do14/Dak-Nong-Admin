@@ -60,8 +60,9 @@ export const ViewNewsManagement = () => {
                 soSaoTrungBinh: detailNews.soSaoTrungBinh,
                 luotXem: detailNews.luotXem,
                 diaChi: detailNews.diaChi,
-                hinhAnh: detailNews.hinhAnh
-
+                hinhAnh: detailNews.hinhAnh,
+                hinhAnh2: detailNews.hinhAnh2,
+                hinhAnh3: detailNews.hinhAnh3,
             });
         };
     }, [detailNews]);
@@ -128,16 +129,26 @@ export const ViewNewsManagement = () => {
             <div className='main-page h-100 flex-1 auto bg-white px-4 py-8'>
                 <div className='bg-white'>
                     <Row>
-                        <Col xs={24} sm={24} md={10} lg={7} xl={5} className='border-add flex justify-center'>
-                            <div className='legend-title'>Sửa mới ảnh</div>
-                            <UploadFileCommon
-                                label={''}
-                                dataAttribute={dataNews.hinhAnh}
-                            // handleUpload={handleUpload}
-                            />
-                            {/* <div className='aaaaa'>Thêm thông tin mới</div> */}
+                        <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={5} className='border-add flex justify-center'>
+                            <div className='legend-title'>Thêm mới ảnh</div>
+                            <Col>
+                                <UploadFileCommon
+                                    label={''}
+                                    dataAttribute={dataNews.hinhAnh}
+                                />
+                                <UploadFileCommon
+                                    label={''}
+                                    dataAttribute={dataNews.hinhAnh2}
+                                    shape={'rectangle'}
+                                />
+                                <UploadFileCommon
+                                    label={''}
+                                    dataAttribute={dataNews.hinhAnh3}
+                                    shape={'rectangle'}
+                                />
+                            </Col>
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={17} xl={19} className='border-add'>
+                         <Col xs={24} sm={24} md={12} lg={16} xl={18} xxl={19} className='border-add'>
                             <div className='legend-title'>Chỉnh sửa thông tin</div>
                             <Row gutter={[30, 0]}>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>

@@ -13,6 +13,7 @@ import UploadFileCommon from '../../infrastucture/common/components/input/upload
 import { WarningMessage } from '../../infrastucture/common/components/toast/notificationToast';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
 import UploadMultiFile from '../../infrastucture/common/components/input/upload-multi-file';
+import { getCurrentDate } from '../../infrastucture/utils/helper';
 
 export const AddNewsManagement = () => {
     const [validate, setValidate] = useState({});
@@ -50,28 +51,44 @@ export const AddNewsManagement = () => {
     const onCreateNews = async () => {
         var formdata = new FormData();
         await setSubmittedTime(Date.now());
-        if (document.getElementById("file").files.length > 0) {
+        if (document.getElementById("imageUpload").files.length > 0) {
             formdata.append(
                 "hinhAnh",
-                document.getElementById("file").files[0],
-                document.getElementById('file').value
+                document.getElementById("imageUpload").files[0],
+                document.getElementById('imageUpload').value
             );
-        }
-
+        };
+        if (document.getElementById("imageUpload2").files.length > 0) {
+            formdata.append(
+                "hinhAnh2",
+                document.getElementById("imageUpload2").files[0],
+                document.getElementById('imageUpload2').value
+            );
+        };
+        if (document.getElementById("imageUpload3").files.length > 0) {
+            formdata.append(
+                "hinhAnh3",
+                document.getElementById("imageUpload3").files[0],
+                document.getElementById('imageUpload3').value
+            );
+        };
         formdata.append("tieuDe", dataNews.tieuDe);
+        formdata.append("tieuDeUS", dataNews.tieuDeUS);
         formdata.append("status", 1);
         formdata.append("tieuDeCon", dataNews.tieuDeCon);
+        formdata.append("tieuDeConUS", dataNews.tieuDeConUS);
         formdata.append("moTaNgan", dataNews.moTaNgan);
-        formdata.append("firstName", dataNews.firstName);
+        formdata.append("moTaNganUS", dataNews.moTaNganUS);
         formdata.append("chiTiet", dataNews.chiTiet);
-        formdata.append("ngayDang", dataNews.ngayDang);
+        formdata.append("chiTietUS", dataNews.chiTietUS);
+
+        formdata.append("firstName", dataNews.firstName);
+        formdata.append("ngayDang", getCurrentDate());
         formdata.append("luotXem", dataNews.luotXem || 0);
         formdata.append("soSaoTrungBinh", dataNews.soSaoTrungBinh || 0);
         formdata.append("diaChi", dataNews.diaChi);
         formdata.append("userId", dataNews.userId || 1);
-        formdata.append("lat", 1);
-        formdata.append("long", 1);
-        formdata.append("geom", "POINT(-122.360 47.656)");
+        // formdata.append("geom", "POINT(-122.360 47.656)");
         if (isValidData()) {
             await api.createNews(
                 formdata,
@@ -89,16 +106,26 @@ export const AddNewsManagement = () => {
             <div className='main-page h-100 flex-1 auto bg-white px-4 py-8'>
                 <div className='bg-white'>
                     <Row>
-                        <Col xs={24} sm={24} md={10} lg={7} xl={5} className='border-add flex justify-center'>
+                        <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={5} className='border-add flex justify-center'>
                             <div className='legend-title'>Thêm mới ảnh</div>
-                            <UploadFileCommon
-                                label={''}
-                                dataAttribute={dataNews.hinhAnh}
-                            // handleUpload={handleUpload}
-                            />
-                            {/* <div className='aaaaa'>Thêm thông tin mới</div> */}
+                            <Col>
+                                <UploadFileCommon
+                                    id={"imageUpload"}
+                                    dataAttribute={dataNews.hinhAnh}
+                                />
+                                <UploadFileCommon
+                                    id={"imageUpload2"}
+                                    dataAttribute={dataNews.hinhAnh2}
+                                    shape={'rectangle'}
+                                />
+                                <UploadFileCommon
+                                    id={"imageUpload3"}
+                                    dataAttribute={dataNews.hinhAnh3}
+                                    shape={'rectangle'}
+                                />
+                            </Col>
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={17} xl={19} className='border-add'>
+                        <Col xs={24} sm={24} md={12} lg={16} xl={18} xxl={19} className='border-add'>
                             <div className='legend-title'>Thêm thông tin mớ</div>
                             <Row gutter={[30, 0]}>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>

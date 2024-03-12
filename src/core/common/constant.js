@@ -10,8 +10,8 @@ export default class Constants {
                 icon: <UserOutlined />
             },
             {
-                label: "Danh mục bài viết",
-                link: ROUTE_PATH.CATEGORY_NEWS,
+                label: "Quản lý danh mục",
+                link: ROUTE_PATH.CATEGORY,
                 icon: <DatabaseOutlined />
             },
             // {

@@ -14,7 +14,8 @@ const UploadFileCommon = (props) => {
         label,
         isRequired,
         dataAttribute,
-        handleUpload
+        id,
+        shape = ""
     } = props;
     const [value, setValue] = useState("");
 
@@ -58,7 +59,6 @@ const UploadFileCommon = (props) => {
     // document.getElementById("imageUpload").change(function () {
     //     readURL(this);
     // });
-
     return (
         <div>
             <div className='mb-4 input-common'>
@@ -80,16 +80,16 @@ const UploadFileCommon = (props) => {
                     </div> */}
                 <div className="avatar-upload">
                     <div className="avatar-edit">
-                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                        <label for="imageUpload"></label>
+                        <input type='file' id={id} accept=".png, .jpg, .jpeg" />
+                        <label for={id}></label>
                     </div>
-                    <div className="avatar-preview">
+                    <div className={`avatar-preview ${shape}`}>
                         <div id="imagePreview" style={{ backgroundImage: `${dataAttribute ? `url(${showImageCommon(dataAttribute)})` : `url(${noImgProduct})`}` }}>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 };
 export default UploadFileCommon;

@@ -52,19 +52,20 @@ export const AddSpecialtyManagement = () => {
     const onCreateLocation = async () => {
         var formdata = new FormData();
         await setSubmittedTime(Date.now());
-        if (document.getElementById("file").files.length > 0) {
+        if (document.getElementById("imageUpload").files.length > 0) {
             formdata.append(
                 "hinhAnh",
-                document.getElementById("file").files[0],
-                document.getElementById('file').value
+                document.getElementById("imageUpload").files[0],
+                document.getElementById('imageUpload').value
             );
         };
         formdata.append("tenDiaDiem", dataLocation.tenDiaDiem);
+        formdata.append("tenDiaDiemUS", dataLocation.tenDiaDiemUS);
         formdata.append("status", 1);
         formdata.append("diaChi", dataLocation.diaChi);
-        formdata.append("uriVideo", dataLocation.uriVideo);
+        formdata.append("diaChiUS", dataLocation.diaChiUS);
         formdata.append("moTa", dataLocation.moTa);
-        formdata.append("uriBaiViet", dataLocation.uriBaiViet);
+        formdata.append("moTaUS", dataLocation.moTaUS);
         formdata.append("idQuanHuyen", dataLocation.idQuanHuyen);
         formdata.append("idDanhMuc", Constants.CategoryConfig.Specialty.value);
         formdata.append("soSaoTrungBinh", dataLocation.soSaoTrungBinh || 0);
@@ -74,9 +75,9 @@ export const AddSpecialtyManagement = () => {
         formdata.append("gioDongCua", dataLocation.gioDongCua);
         formdata.append("thoiGianGhe", dataLocation.thoiGianGhe);
         formdata.append("luotXem", dataLocation.luotXem || 0);
-        formdata.append("lat", 1);
-        formdata.append("long", 1);
-        formdata.append("geom", "POINT(-122.360 47.656)");
+        formdata.append("lat", Number(dataLocation.lat));
+        formdata.append("long", Number(dataLocation.long));
+        // formdata.append("geom", "POINT(-122.360 47.656)");
         if (isValidData()) {
             await api.createLocation(
                 formdata,
@@ -94,16 +95,16 @@ export const AddSpecialtyManagement = () => {
             <div className='main-page h-100 flex-1 auto bg-white px-4 py-8'>
                 <div className='bg-white'>
                     <Row>
-                        <Col xs={24} sm={24} md={10} lg={7} xl={5} className='border-add flex justify-center'>
+                        <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={5} className='border-add flex justify-center'>
                             <div className='legend-title'>Thêm mới ảnh</div>
                             <UploadFileCommon
-                                label={''}
+                                id={"imageUpload"}
                                 dataAttribute={dataLocation.hinhAnh}
                             // handleUpload={handleUpload}
                             />
                             {/* <div className='aaaaa'>Thêm thông tin mới</div> */}
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={17} xl={19} className='border-add'>
+                        <Col xs={24} sm={24} md={12} lg={16} xl={18} xxl={19} className='border-add'>
                             <div className='legend-title'>Thêm thông tin mới</div>
                             <Row gutter={[30, 0]}>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
@@ -160,10 +161,10 @@ export const AddSpecialtyManagement = () => {
                                 </Col>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputTextCommon
-                                        label={"URL Video"}
-                                        attribute={"uriVideo"}
-                                        isRequired={false}
-                                        dataAttribute={dataLocation.uriVideo}
+                                        label={"Kinh độ"}
+                                        attribute={"lat"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.lat}
                                         setData={setDataLocation}
                                         disabled={false}
                                         validate={validate}
@@ -173,10 +174,10 @@ export const AddSpecialtyManagement = () => {
                                 </Col>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputTextCommon
-                                        label={"URL bài viết"}
-                                        attribute={"uriBaiViet"}
-                                        isRequired={false}
-                                        dataAttribute={dataLocation.uriBaiViet}
+                                        label={"Vĩ độ"}
+                                        attribute={"long"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.long}
                                         setData={setDataLocation}
                                         disabled={false}
                                         validate={validate}
@@ -249,9 +250,6 @@ export const AddSpecialtyManagement = () => {
                                         setValidate={setValidate}
                                         submittedTime={submittedTime}
                                     />
-                                </Col>
-                                <Col span={24}>
-                                    <UploadMultiFile />
                                 </Col>
                             </Row>
                         </Col>

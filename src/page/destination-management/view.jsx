@@ -60,10 +60,8 @@ export const ViewDestinationlManagement = () => {
                 chiDanDuongDiUS: detailLocation.chiDanDuongDiUS,
                 viTriDiaLy: detailLocation.viTriDiaLy,
                 viTriDiaLyUS: detailLocation.viTriDiaLyUS,
-                giave: detailLocation.giave,
-                giaveUS: detailLocation.giaveUS,
-                uriVideo: detailLocation.uriVideo,
-                uriBaiViet: detailLocation.uriBaiViet,
+                giaVe: detailLocation.giaVe,
+                giaVeUS: detailLocation.giaVeUS,
                 idQuanHuyen: detailLocation.idQuanHuyen,
                 idDanhMuc: detailLocation.idDanhMuc,
                 idDiaDiem: detailLocation.idDiaDiem,
@@ -114,26 +112,42 @@ export const ViewDestinationlManagement = () => {
         else {
             formdata.append("hinhAnh", detailLocation.hinhAnh);
         }
+        if (document.getElementById("videoUpload").files.length > 0) {
+            formdata.append(
+                "uriVideo",
+                document.getElementById("videoUpload").files[0],
+                document.getElementById('videoUpload').value
+            );
+        }
+        else {
+            formdata.append("uriVideo", detailLocation.uriVideo);
+        }
         formdata.append("tenDiaDiem", dataLocation.tenDiaDiem);
+        formdata.append("tenDiaDiemUS", dataLocation.tenDiaDiemUS);
         formdata.append("status", 1);
         formdata.append("diaChi", dataLocation.diaChi);
-        formdata.append("uriVideo", dataLocation.uriVideo);
+        formdata.append("diaChiUS", dataLocation.diaChiUS);
         formdata.append("moTa", dataLocation.moTa);
-        formdata.append("uriBaiViet", dataLocation.uriBaiViet);
+        formdata.append("moTaUS", dataLocation.moTaUS);
+        formdata.append("viTriDiaLy", dataLocation.viTriDiaLy);
+        formdata.append("viTriDiaLyUS", dataLocation.viTriDiaLyUS);
+        formdata.append("chiDanDuongDi", dataLocation.chiDanDuongDi);
+        formdata.append("chiDanDuongDiUS", dataLocation.chiDanDuongDiUS);
+        formdata.append("moTa", dataLocation.moTa);
+        formdata.append("moTaUS", dataLocation.moTaUS);
         formdata.append("idQuanHuyen", dataLocation.idQuanHuyen);
         formdata.append("idDanhMuc", dataLocation.idDanhMuc);
-        formdata.append("idDiaDiem", dataLocation.idDiaDiem);
-        formdata.append("soSaoTrungBinh", dataLocation.soSaoTrungBinh);
+        formdata.append("soSaoTrungBinh", dataLocation.soSaoTrungBinh || 0);
         formdata.append("emailLienHe", dataLocation.emailLienHe);
         formdata.append("sdtLienHe", dataLocation.sdtLienHe);
         formdata.append("gioMoCua", dataLocation.gioMoCua);
         formdata.append("gioDongCua", dataLocation.gioDongCua);
         formdata.append("thoiGianGhe", dataLocation.thoiGianGhe);
-        formdata.append("luotXem", dataLocation.luotXem);
+        formdata.append("luotXem", dataLocation.luotXem || 0);
         formdata.append("giaVe", dataLocation.giaVe)
-        formdata.append("lat", 1);
-        formdata.append("long", 1);
-        formdata.append("geom", "POINT(-122.360 47.656)");
+        formdata.append("giaVeUS", dataLocation.giaVeUS)
+        formdata.append("lat", Number(dataLocation.lat));
+        formdata.append("long", Number(dataLocation.long));
         if (isValidData()) {
             await api.updateLocation(
                 parseInt(param.id),
@@ -152,16 +166,16 @@ export const ViewDestinationlManagement = () => {
             <div className='main-page h-100 flex-1 auto bg-white px-4 py-8'>
                 <div className='bg-white'>
                     <Row>
-                        <Col xs={24} sm={24} md={10} lg={7} xl={5} className='border-add flex justify-center'>
+                        <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={5} className='border-add flex justify-center'>
                             <div className='legend-title'>Chỉnh sửa ảnh</div>
                             <UploadFileCommon
-                                label={''}
+                                id={"imageUpload"}
                                 dataAttribute={dataLocation.hinhAnh}
                             // handleUpload={handleUpload}
                             />
                             {/* <div className='aaaaa'>Thêm thông tin mới</div> */}
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={17} xl={19} className='border-add'>
+                        <Col xs={24} sm={24} md={12} lg={16} xl={18} xxl={19} className='border-add'>
                             <div className='legend-title'>Chỉnh sửa thông tin</div>
                             <Row gutter={[30, 0]}>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
@@ -300,9 +314,9 @@ export const ViewDestinationlManagement = () => {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputTextCommon
                                         label={"Giá vé"}
-                                        attribute={"giave"}
+                                        attribute={"giaVe"}
                                         isRequired={true}
-                                        dataAttribute={dataLocation.giave}
+                                        dataAttribute={dataLocation.giaVe}
                                         setData={setDataLocation}
                                         disabled={false}
                                         validate={validate}
@@ -313,9 +327,9 @@ export const ViewDestinationlManagement = () => {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputTextCommon
                                         label={"Giá vé (Tiếng anh)"}
-                                        attribute={"giaveUS"}
+                                        attribute={"giaVeUS"}
                                         isRequired={true}
-                                        dataAttribute={dataLocation.giaveUS}
+                                        dataAttribute={dataLocation.giaVeUS}
                                         setData={setDataLocation}
                                         disabled={false}
                                         validate={validate}
@@ -430,7 +444,15 @@ export const ViewDestinationlManagement = () => {
                                     />
                                 </Col>
                                 <Col span={24}>
-                                    <UploadMultiFile />
+                                    <Row justify={"space-between"}>
+                                        <UploadFileCommon
+                                            id={"videoUpload"}
+                                            dataAttribute={dataLocation.uriVideo}
+                                            shape={"rectangle"}
+                                        />
+                                        <UploadMultiFile />
+                                    </Row>
+
                                 </Col>
                             </Row>
                         </Col>

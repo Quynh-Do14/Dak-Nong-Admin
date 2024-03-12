@@ -11,7 +11,6 @@ const UploadMultiFile = (props) => {
     const [listImage, setListImage] = useState([]);
 
     const onChange = (e) => {
-        console.log('e', e.fileList);
     }
     const getAllHinhAnh = async () => {
         if (dataAttribute) {
@@ -27,8 +26,6 @@ const UploadMultiFile = (props) => {
             getAllHinhAnh().then((_) => { });
         }
     }, [dataAttribute]);
-    console.log('listImage', listImage);
-
     return (
         <div>
             <Dragger
@@ -36,7 +33,7 @@ const UploadMultiFile = (props) => {
                 onChange={onChange}
                 accept='.png, .jpg, .jpeg'
             >
-                <p className="ant-upload-drag-icon">
+                <p className="ant-upload-drag-icon" id='multi-file'>
                     <InboxOutlined style={{ color: '#094174' }} />
                 </p>
                 <p className="ant-upload-text">

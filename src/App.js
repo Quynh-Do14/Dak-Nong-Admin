@@ -45,9 +45,9 @@ const RouteRoot = () => {
         <Route path={ROUTE_PATH.VIEW_USER} element={<PrivateRoute component={ViewUserManagement} />} />
         <Route path={ROUTE_PATH.ADD_USER} element={<PrivateRoute component={AddUserManagement} />} />
 
-        <Route path={ROUTE_PATH.CATEGORY_NEWS} element={<PrivateRoute component={ListCategoryNewsManagement} />} />
-        <Route path={ROUTE_PATH.VIEW_CATEGORY_NEWS} element={<PrivateRoute component={ViewCategoryNewsManagement} />} />
-        <Route path={ROUTE_PATH.ADD_CATEGORY_NEWS} element={<PrivateRoute component={AddCategoryNewsManagement} />} />
+        <Route path={ROUTE_PATH.CATEGORY} element={<PrivateRoute component={ListCategoryNewsManagement} />} />
+        <Route path={ROUTE_PATH.VIEW_CATEGORY} element={<PrivateRoute component={ViewCategoryNewsManagement} />} />
+        <Route path={ROUTE_PATH.ADD_CATEGORY} element={<PrivateRoute component={AddCategoryNewsManagement} />} />
 
         <Route path={ROUTE_PATH.CATEGORY_SERVICE} element={<PrivateRoute component={ListCategoryServiceManagement} />} />
         <Route path={ROUTE_PATH.VIEW_CATEGORY_SERVICE} element={<PrivateRoute component={ViewCategoryServiceManagement} />} />

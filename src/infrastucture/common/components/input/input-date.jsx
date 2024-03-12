@@ -51,8 +51,7 @@ const InputDateCommon = (props) => {
             onBlur(true);
         }
     }, [submittedTime]);
-    console.log('reverseConvertDate', reverseConvertDate(dataAttribute));
-    console.log('vadataAttributelie', (dataAttribute));
+
 
     return (
         <Row className='mb-4 input-common'>

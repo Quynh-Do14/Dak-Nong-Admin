@@ -4,7 +4,7 @@ import { Input } from 'antd';
 import { validateFields } from '../../../utils/helper';
 import { MessageError } from '../controls/MessageError';
 import '../../../../assets/css/common/input.css'
-import { validateEmail, validatePhoneNumber } from '../../../utils/validate';
+import { validateEmail, validateFormInputNumber, validatePhoneNumber } from '../../../utils/validate';
 const InputTextCommon = (props) => {
     const {
         label,
@@ -39,6 +39,10 @@ const InputTextCommon = (props) => {
             if (attribute.includes("sdt")) {
                 checkValidate = validatePhoneNumber(value);
                 validateFields(isImplicitChange, attribute, !checkValidate, setValidate, validate, !checkValidate ? value ? `Vui lòng nhập đúng định dạng ${labelLower}` : `Vui lòng nhập ${labelLower}` : "");
+            }
+            if (attribute.includes("lat") || attribute.includes("long")) {
+                checkValidate = validateFormInputNumber(value);
+                validateFields(isImplicitChange, attribute, !checkValidate, setValidate, validate, !checkValidate ? value ? `Vui lòng nhập đúng định dạng số ${labelLower}` : `Vui lòng nhập ${labelLower}` : "");
             }
         }
     };

@@ -43,7 +43,6 @@ export const ListDestinationManagement = () => {
         setDictrictId(dataDistrict[0]?.idQuanHuyen);
         setCategoryId(dataCategory[0]?.idDanhMucDiaDiem);
     }, [dataDistrict, dataCategory])
-    console.log('dataCategory',dataCategory);
     const checkCondition = () => {
         return dataDistrict && dataCategory ? true : false
     }

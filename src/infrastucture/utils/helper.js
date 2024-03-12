@@ -86,3 +86,11 @@ export const showImageCommon = (img) => {
         return `${API}${PUBLIC}/${img}`
     }
 }
+export function getCurrentDate() {
+    const date = new Date();
+    const day = date.getDate(); // Lấy ngày (1 - 31)
+    const month = date.getMonth() + 1; // Lấy tháng (0 - 11), cộng 1 vì tháng bắt đầu từ 0
+    const year = date.getFullYear(); // Lấy năm (đầy đủ 4 chữ số)
+
+    return `${day}/${month}/${year}`; // Trả về chuỗi ngày/tháng/năm
+}
