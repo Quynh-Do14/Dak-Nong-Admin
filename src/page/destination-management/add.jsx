@@ -23,13 +23,14 @@ export const AddDestinationManagement = () => {
     const [loading, setLoading] = useState(false);
     const [submittedTime, setSubmittedTime] = useState();
     const [_data, _setData] = useState({});
+    const [listImgUpload, setListImgUpload] = useState([])
     const dataLocation = _data;
 
     const setDataLocation = (data) => {
         Object.assign(dataLocation, { ...data });
         _setData({ ...dataLocation });
     };
-
+    console.log("listImgUpload", listImgUpload);
     const isValidData = () => {
         let allRequestOK = true;
 
@@ -50,6 +51,11 @@ export const AddDestinationManagement = () => {
         navigate(ROUTE_PATH.DESTINATION)
     };
 
+    const onUploadImg = async () => {
+        await api.upload(
+            listImgUpload,
+        )
+    }
     const onCreateLocation = async () => {
         var formdata = new FormData();
         await setSubmittedTime(Date.now());
@@ -387,13 +393,22 @@ export const AddDestinationManagement = () => {
                                     />
                                 </Col>
                                 <Col span={24}>
-                                    <Row justify={"space-between"}>
-                                        <UploadFileCommon
-                                            id={"videoUpload"}
-                                            dataAttribute={dataLocation.uriVideo}
-                                            shape={"rectangle"}
-                                        />
-                                        <UploadMultiFile />
+                                    <Row align={"top"}>
+                                        <Col xl={24} xxl={6}>
+                                            <UploadFileCommon
+                                                label="Tải lên Video"
+                                                isVideo={true}
+                                                id={"videoUpload"}
+                                                dataAttribute={dataLocation.uriVideo}
+                                                shape={"rectangle"}
+                                            />
+                                        </Col>
+                                        <Col xl={24} xxl={18}>
+                                            <UploadMultiFile
+                                                label="Tải lên danh mục ảnh"
+                                                setListImgUpload={setListImgUpload}
+                                            />
+                                        </Col>
                                     </Row>
 
                                 </Col>

@@ -8,57 +8,30 @@ import { UploadOutlined } from '@ant-design/icons';
 import { ButtonCommon } from '../button/button-common';
 import { showImageCommon } from '../../../utils/helper';
 import noImgProduct from "../../../../assets/images/no-avatar-product.jpg"
+import noVideoProduct from "../../../../assets/images/noVideo.png"
+
 import api from '../../../api';
 const UploadFileCommon = (props) => {
     const {
         label,
-        isRequired,
+        isVideo = false,
         dataAttribute,
         id,
         shape = ""
     } = props;
     const [value, setValue] = useState("");
+    const [file, setFile] = useState()
 
     useEffect(() => {
         setValue(dataAttribute || '');
 
     }, [dataAttribute]);
-    // document.getElementsByName("upload-img").addEventListener('change', (e) => {
-    //     readURL(this, document.getElementByClassName("file-wrapper"));
-    // });
 
-    // document.getElementByClassName("close-btn").addEventListener('click', (e) => {
-    //     let file = document.getElementsByName("upload-img");
-    //     document.getElementByClassName("file-wrapper").css('background-image', 'unset');
-    //     document.getElementByClassName("file-wrapper").classList.remove("file-set");
-    //     file.replaceWith(file = file.clone(true));
-    // });
-
-
-    // function readURL(input, obj) {
-    //     if (input.files && input.files[0]) {
-    //         let reader = new FileReader();
-    //         reader.onload = function (e) {
-    //             obj.css('background-image', 'url(' + e.target.result + ')');
-    //             obj.classList.add("file-set");
-    //         }
-    //         reader.readAsDataURL(input.files[0]);
-    //     }
-    // };
-    // function readURL(input) {
-    //     if (input.files && input.files[0]) {
-    //         let reader = new FileReader();
-    //         reader.onload = function (e) {
-    //             document.getElementById("imagePreview").css('background-image', 'url(' + e.target.result + ')');
-    //             document.getElementById("imagePreview").style.display = "none";
-    //             document.getElementById("imagePreview").fadeIn(650);
-    //         }
-    //         reader.readAsDataURL(input.files[0]);
-    //     }
-    // }
-    // document.getElementById("imageUpload").change(function () {
-    //     readURL(this);
-    // });
+    const handleFileChange = async (event) => {
+        const file = event.target.files[0].name;
+        console.log("file", event.target.files[0]);
+        setFile(file)
+    };
     return (
         <div>
             <div className='mb-4 input-common'>
@@ -78,14 +51,35 @@ const UploadFileCommon = (props) => {
                         />
                         <div className="close-btn" id='close-btn'>×</div>
                     </div> */}
+                <div className='title'>
+                    <span className='label'>{isVideo && label}</span>
+                </div>
                 <div className="avatar-upload">
                     <div className="avatar-edit">
-                        <input type='file' id={id} accept=".png, .jpg, .jpeg" />
+                        <input type='file' id={id} onChange={handleFileChange} accept={`${isVideo ? "video/mp4" : ".png, .jpg, .jpeg"}`} />
                         <label for={id}></label>
                     </div>
                     <div className={`avatar-preview ${shape}`}>
-                        <div id="imagePreview" style={{ backgroundImage: `${dataAttribute ? `url(${showImageCommon(dataAttribute)})` : `url(${noImgProduct})`}` }}>
-                        </div>
+                        {
+                            file
+                                ?
+                                <div className='flex justify-center align-center'>
+                                    <div style={{
+                                        textAlign: "center",
+                                        color: "#fe7524",
+                                        fontSize: "14px",
+                                        lineHeight: "22px",
+                                        fontWeight: 600
+
+                                    }}>
+                                        {file}
+                                    </div>
+                                </div>
+                                :
+                                <div id="imagePreview" style={{ backgroundImage: `${dataAttribute ? `url(${showImageCommon(dataAttribute)})` : `url(${isVideo ? noVideoProduct : noImgProduct})`}` }}>
+                                </div>
+                        }
+
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ import * as apiLinks from "../../core/common/apiLinks";
 
 const api = {
   login: (data, setLoading) => request.login(`${apiLinks.API}${Endpoint.Auth.Login}`, data, setLoading),
-  upload: (data, setLoading) => request.postUploadFile(`${apiLinks.API}${Endpoint.Module.Upload}`, data, setLoading),
+  upload: (data, setLoading) => request.postUploadFile(`${apiLinks.API}${Endpoint.Module.MultiUpload}`, data, setLoading),
 
   getHinhAnhByIdDiaDiem: (params, setLoading) =>
     request.get(
@@ -132,6 +132,7 @@ const api = {
   deleteNews: (data, callBack, setLoading) => {
     request.delete(`${apiLinks.API}${Endpoint.Module.News}/${data.id}`, data, callBack, setLoading)
   },
+
   /////
 };
 export default api;
