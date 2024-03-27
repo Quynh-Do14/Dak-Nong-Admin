@@ -14,9 +14,11 @@ import InputTimePickerCommon from '../../infrastucture/common/components/input/i
 import InputSelectCategoryCommon from '../../infrastucture/common/components/input/select-category';
 import { WarningMessage } from '../../infrastucture/common/components/toast/notificationToast';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
+import InputDateCommon from '../../infrastucture/common/components/input/input-date';
+import { convertDateOnly } from '../../infrastucture/utils/helper';
 import UploadMultiFile from '../../infrastucture/common/components/input/upload-multi-file';
 
-export const ViewSpecialtyManagement = () => {
+export const ViewRestaurantManagement = () => {
     const [validate, setValidate] = useState({});
     const [loading, setLoading] = useState(false);
     const [detailLocation, setDetailLocation] = useState({});
@@ -55,10 +57,10 @@ export const ViewSpecialtyManagement = () => {
                 status: 1,
                 diaChi: detailLocation.diaChi,
                 diaChiUS: detailLocation.diaChiUS,
-                uriVideo: detailLocation.uriVideo,
                 moTa: detailLocation.moTa,
                 moTaUS: detailLocation.moTaUS,
-                uriBaiViet: detailLocation.uriBaiViet,
+                giaVe: detailLocation.giaVe,
+                giaVeUS: detailLocation.giaVeUS,
                 idQuanHuyen: detailLocation.idQuanHuyen,
                 idDanhMuc: detailLocation.idDanhMuc,
                 idDiaDiem: detailLocation.idDiaDiem,
@@ -109,41 +111,42 @@ export const ViewSpecialtyManagement = () => {
     }, []);
 
     const onBack = () => {
-        navigate(ROUTE_PATH.SPECIALTY)
+        navigate(ROUTE_PATH.RESTAURANT)
     };
 
     const onUpdateLocation = async () => {
         var formdata = new FormData();
         await setSubmittedTime(Date.now());
-        if (document.getElementById("file").files.length > 0) {
+        if (document.getElementById("imageUpload").files.length > 0) {
             formdata.append(
                 "hinhAnh",
-                document.getElementById("file").files[0],
-                document.getElementById('file').value
+                document.getElementById("imageUpload").files[0],
+                document.getElementById('imageUpload').value
             );
         }
         else {
             formdata.append("hinhAnh", detailLocation.hinhAnh);
-        }
+        };
         formdata.append("tenDiaDiem", dataLocation.tenDiaDiem);
+        formdata.append("tenDiaDiemUS", dataLocation.tenDiaDiemUS);
         formdata.append("status", 1);
         formdata.append("diaChi", dataLocation.diaChi);
-        formdata.append("uriVideo", dataLocation.uriVideo);
+        formdata.append("diaChiUS", dataLocation.diaChiUS);
         formdata.append("moTa", dataLocation.moTa);
-        formdata.append("uriBaiViet", dataLocation.uriBaiViet);
+        formdata.append("moTaUS", dataLocation.moTaUS);
         formdata.append("idQuanHuyen", dataLocation.idQuanHuyen);
         formdata.append("idDanhMuc", dataLocation.idDanhMuc);
-        formdata.append("idDiaDiem", dataLocation.idDiaDiem);
-        formdata.append("soSaoTrungBinh", dataLocation.soSaoTrungBinh);
+        formdata.append("soSaoTrungBinh", dataLocation.soSaoTrungBinh || 0);
         formdata.append("emailLienHe", dataLocation.emailLienHe);
         formdata.append("sdtLienHe", dataLocation.sdtLienHe);
         formdata.append("gioMoCua", dataLocation.gioMoCua);
         formdata.append("gioDongCua", dataLocation.gioDongCua);
         formdata.append("thoiGianGhe", dataLocation.thoiGianGhe);
-        formdata.append("luotXem", dataLocation.luotXem);
-        formdata.append("lat", 1);
-        formdata.append("long", 1);
-        formdata.append("geom", "POINT(-122.360 47.656)");
+        formdata.append("giaVe", dataLocation.giaVe)
+        formdata.append("giaVeUS", dataLocation.giaVeUS)
+        formdata.append("luotXem", dataLocation.luotXem || 0);
+        formdata.append("lat", Number(dataLocation.lat));
+        formdata.append("long", Number(dataLocation.long));
         if (isValidData()) {
             await api.updateLocation(
                 parseInt(param.id),
@@ -158,14 +161,14 @@ export const ViewSpecialtyManagement = () => {
     };
 
     return (
-        <MainLayout breadcrumb={"Quản lý đặc sản"} title={"Thêm đặc sản"} redirect={ROUTE_PATH.SPECIALTY}>
+        <MainLayout breadcrumb={"Quản lý nhà hàng"} title={"Thêm nhà hàng"} redirect={ROUTE_PATH.RESTAURANT}>
             <div className='main-page h-100 flex-1 auto bg-white px-4 py-8'>
                 <div className='bg-white'>
                     <Row>
                         <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={5} className='border-add flex justify-center'>
                             <div className='legend-title'>Thêm mới ảnh</div>
                             <UploadFileCommon
-                                label={''}
+                                id={"imageUpload"}
                                 dataAttribute={dataLocation.hinhAnh}
                             // handleUpload={handleUpload}
                             />
@@ -176,7 +179,7 @@ export const ViewSpecialtyManagement = () => {
                             <Row gutter={[30, 0]}>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputTextCommon
-                                        label={"Tên đặc sản"}
+                                        label={"Tên nhà hàng"}
                                         attribute={"tenDiaDiem"}
                                         isRequired={true}
                                         dataAttribute={dataLocation.tenDiaDiem}
@@ -189,7 +192,7 @@ export const ViewSpecialtyManagement = () => {
                                 </Col>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputTextCommon
-                                        label={"Tên đặc sản (Tiếng anh)"}
+                                        label={"Tên nhà hàng (Tiếng anh)"}
                                         attribute={"tenDiaDiemUS"}
                                         isRequired={true}
                                         dataAttribute={dataLocation.tenDiaDiemUS}
@@ -228,10 +231,10 @@ export const ViewSpecialtyManagement = () => {
                                 </Col>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputTextCommon
-                                        label={"URL Video"}
-                                        attribute={"uriVideo"}
-                                        isRequired={false}
-                                        dataAttribute={dataLocation.uriVideo}
+                                        label={"Kinh độ"}
+                                        attribute={"lat"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.lat}
                                         setData={setDataLocation}
                                         disabled={false}
                                         validate={validate}
@@ -241,10 +244,62 @@ export const ViewSpecialtyManagement = () => {
                                 </Col>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputTextCommon
-                                        label={"URL bài viết"}
-                                        attribute={"uriBaiViet"}
-                                        isRequired={false}
-                                        dataAttribute={dataLocation.uriBaiViet}
+                                        label={"Vĩ độ"}
+                                        attribute={"long"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.long}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"Thời gian tổ chức"}
+                                        attribute={"gioMoCua"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.gioMoCua}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"Thời gian tổ chức (Tiếng anh)"}
+                                        attribute={"thoiGianGhe"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.thoiGianGhe}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"Giá vé"}
+                                        attribute={"giaVe"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.giaVe}
+                                        setData={setDataLocation}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                                    <InputTextCommon
+                                        label={"Giá vé (Tiếng anh)"}
+                                        attribute={"giaVeUS"}
+                                        isRequired={true}
+                                        dataAttribute={dataLocation.giaVeUS}
                                         setData={setDataLocation}
                                         disabled={false}
                                         validate={validate}
@@ -318,9 +373,7 @@ export const ViewSpecialtyManagement = () => {
                                         submittedTime={submittedTime}
                                     />
                                 </Col>
-                                <Col span={24}>
-                                    <UploadMultiFile />
-                                </Col>
+
                             </Row>
                         </Col>
                     </Row>

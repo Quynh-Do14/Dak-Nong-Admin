@@ -61,7 +61,7 @@ export const ViewCategoryServiceManagement = () => {
     }, []);
 
     const onBack = () => {
-        navigate(ROUTE_PATH.CATEGORY_SERVICE)
+        navigate(ROUTE_PATH.CATEGORY_VEHICLE)
     };
 
     const onUpdateCategory = async () => {
@@ -83,7 +83,7 @@ export const ViewCategoryServiceManagement = () => {
     };
 
     return (
-        <MainLayout breadcrumb={"Quản lý danh mục dịch vụ du lịch"} title={"Xem chi tiết"} redirect={ROUTE_PATH.CATEGORY_SERVICE}>
+        <MainLayout breadcrumb={"Quản lý danh mục dịch vụ du lịch"} title={"Xem chi tiết"} redirect={ROUTE_PATH.CATEGORY_VEHICLE}>
             <div className='flex flex-col header-page'>
                 <div className='title-page pt-5 pb-7'>
                     Xem chi tiết danh mục dịch vụ du lịch

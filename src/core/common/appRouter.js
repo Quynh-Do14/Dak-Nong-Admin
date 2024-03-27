@@ -16,9 +16,9 @@ export const ROUTE_PATH = {
     VIEW_CATEGORY_NEWS: `${PREFIX}/category_news/view/:id`,
     ADD_CATEGORY_NEWS: `${PREFIX}/category_news/add`,
 
-    CATEGORY_SERVICE: `${PREFIX}/category_service`,
-    VIEW_CATEGORY_SERVICE: `${PREFIX}/category_service/view/:id`,
-    ADD_CATEGORY_SERVICE: `${PREFIX}/category_service/add`,
+    CATEGORY_VEHICLE: `${PREFIX}/vehicle`,
+    VIEW_CATEGORY_VEHICLE: `${PREFIX}/vehicle/view/:id`,
+    ADD_CATEGORY_VEHICLE: `${PREFIX}/vehicle/add`,
 
     CATEGORY: `${PREFIX}/category`,
     VIEW_CATEGORY: `${PREFIX}/category/view/:id`,
@@ -40,6 +40,14 @@ export const ROUTE_PATH = {
     NEWS: `${PREFIX}/news`,
     VIEW_NEWS: `${PREFIX}/news/view/:id`,
     ADD_NEWS: `${PREFIX}/news/add`,
+
+    RESTAURANT: `${PREFIX}/restaurant`,
+    VIEW_RESTAURANT: `${PREFIX}/restaurant/view/:id`,
+    ADD_RESTAURANT: `${PREFIX}/restaurant/add`,
+
+    HOTEL: `${PREFIX}/hotel`,
+    VIEW_HOTEL: `${PREFIX}/hotel/view/:id`,
+    ADD_HOTEL: `${PREFIX}/hotel/add`,
 
     TOUR: `${PREFIX}/tour`,
     VIEW_TOUR: `${PREFIX}/tour/view/:id`,

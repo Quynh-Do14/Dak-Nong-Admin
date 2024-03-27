@@ -14,15 +14,25 @@ export default class Constants {
                 link: ROUTE_PATH.CATEGORY,
                 icon: <DatabaseOutlined />
             },
-            // {
-            //     label: "Danh mục dịch vụ du lịch",
-            //     link: ROUTE_PATH.CATEGORY_SERVICE,
-            //     icon: <DatabaseOutlined />
-            // },
+            {
+                label: "Danh mục phương tiện",
+                link: ROUTE_PATH.CATEGORY_VEHICLE,
+                icon: <DatabaseOutlined />
+            },
             {
                 label: "Quản lý điểm đến",
                 link: ROUTE_PATH.DESTINATION,
                 icon: <EnvironmentOutlined />
+            },
+            {
+                label: "Quản lý nhà hàng",
+                link: ROUTE_PATH.RESTAURANT,
+                icon: <ScheduleOutlined />
+            },
+            {
+                label: "Quản lý khách sạn",
+                link: ROUTE_PATH.HOTEL,
+                icon: <ScheduleOutlined />
             },
             {
                 label: "Quản lý lễ hội",
@@ -37,6 +47,11 @@ export default class Constants {
             {
                 label: "Quản lý tin tức",
                 link: ROUTE_PATH.NEWS,
+                icon: <ContainerOutlined />
+            },
+            {
+                label: "Quản lý đánh giá",
+                link: ROUTE_PATH.EVALUATE,
                 icon: <ContainerOutlined />
             },
             {
@@ -132,6 +147,14 @@ export default class Constants {
         static News = class {
             static value = 8;
             static label = "Bài viết";
+        }
+        static Restaurant = class {
+            static value = 24;
+            static label = "Nhà hàng";
+        }
+        static Hotel = class {
+            static value = 26;
+            static label = "Khách sạn";
         }
         static list = [
             { label: "Địa Điểm Du Lịch", value: 1 },

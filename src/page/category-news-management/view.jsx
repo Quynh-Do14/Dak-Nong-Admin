@@ -114,7 +114,7 @@ export const ViewCategoryNewsManagement = () => {
                         <ButtonCommon onClick={onBack} classColor="blue">Quay lại</ButtonCommon>
                     </Col>
                     <Col className='mx-1'>
-                        <ButtonCommon onClick={onUpdateCategory} classColor="orange">Thêm mới</ButtonCommon>
+                        <ButtonCommon onClick={onUpdateCategory} classColor="orange">Cập nhật</ButtonCommon>
                     </Col>
                 </Row>
             </div >

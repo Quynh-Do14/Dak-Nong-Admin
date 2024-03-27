@@ -113,7 +113,7 @@ export const ViewDistrictManagement = () => {
                         <ButtonCommon onClick={onBack} classColor="blue">Quay lại</ButtonCommon>
                     </Col>
                     <Col className='mx-1'>
-                        <ButtonCommon onClick={onDetailDistrictAsync} classColor="orange">Thêm mới</ButtonCommon>
+                        <ButtonCommon onClick={onDetailDistrictAsync} classColor="orange">Cập nhật</ButtonCommon>
                     </Col>
                 </Row>
             </div >

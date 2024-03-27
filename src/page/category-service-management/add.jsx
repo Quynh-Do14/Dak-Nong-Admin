@@ -40,7 +40,7 @@ export const AddCategoryServiceManagement = () => {
     const navigate = useNavigate();
 
     const onBack = () => {
-        navigate(ROUTE_PATH.CATEGORY_SERVICE)
+        navigate(ROUTE_PATH.CATEGORY_VEHICLE)
     };
 
     const onCreateCategory = async () => {
@@ -49,7 +49,7 @@ export const AddCategoryServiceManagement = () => {
             await api.createCategory({
                 tenDanhMuc: dataCategory.tenDanhMuc,
                 status: 1,
-                parentId: Constants.CategoryConfig.Tour.value
+                parentId: Constants.CategoryConfig.Vehicle.value
             },
                 onBack,
                 setLoading
@@ -60,7 +60,7 @@ export const AddCategoryServiceManagement = () => {
         }
     };
     return (
-        <MainLayout breadcrumb={"Quản lý danh mục dịch vụ du lịch"} title={"Thêm danh mục dịch vụ du lịch"} redirect={ROUTE_PATH.CATEGORY_SERVICE}>
+        <MainLayout breadcrumb={"Quản lý danh mục dịch vụ du lịch"} title={"Thêm danh mục dịch vụ du lịch"} redirect={ROUTE_PATH.CATEGORY_VEHICLE}>
             <div className='flex flex-col header-page'>
                 <div className='title-page pt-5 pb-7'>
                     Thêm mới danh mục dịch vụ du lịch

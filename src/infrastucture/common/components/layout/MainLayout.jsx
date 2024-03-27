@@ -136,9 +136,9 @@ export const MainLayout = ({ ...props }) => {
               {Constants.Menu.List.map((it, index) => {
                 return (
                   <Menu.Item className={`${location.pathname.includes(it.link) ? "menu-title active" : "menu-title"}`} key={index} icon={it.icon}>
-                    <Link to={it.link}>
+                    <a href={it.link}>
                       {it.label}
-                    </Link>
+                    </a>
                   </Menu.Item>
                 )
               })}

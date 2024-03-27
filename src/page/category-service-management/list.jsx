@@ -28,7 +28,7 @@ export const ListCategoryServiceManagement = () => {
     const navigate = useNavigate();
 
     const onGetListCategoryAsync = async ({ keyWord = "", limit = pageSize, page = 1 }) => {
-        const response = await api.getAllCategoryByParentId(`${Constants.Params.parentId}=${Constants.CategoryConfig.Tour.value}&${Constants.Params.search}=${keyWord.trim()}&${Constants.Params.limit}=${limit}&${Constants.Params.page}= ${page}`,
+        const response = await api.getAllCategoryByParentId(`${Constants.Params.parentId}=${Constants.CategoryConfig.Vehicle.value}&${Constants.Params.search}=${keyWord.trim()}&${Constants.Params.limit}=${limit}&${Constants.Params.page}= ${page}`,
             setLoading
         )
         setData(response.data.danhMucParentId);
@@ -81,7 +81,7 @@ export const ListCategoryServiceManagement = () => {
     };
 
     const onNavigate = (idDanhMucDiaDiem) => {
-        navigate(`${(ROUTE_PATH.VIEW_CATEGORY_SERVICE).replace(`${Constants.UseParams.Id}`, "")}${idDanhMucDiaDiem}`);
+        navigate(`${(ROUTE_PATH.VIEW_CATEGORY_VEHICLE).replace(`${Constants.UseParams.Id}`, "")}${idDanhMucDiaDiem}`);
     }
     const listAction = (record) => {
         return (
@@ -108,7 +108,7 @@ export const ListCategoryServiceManagement = () => {
                         />
                     </Col>
                     <Col>
-                        <ButtonCommon classColor="gradient" onClick={() => navigate(ROUTE_PATH.ADD_CATEGORY_SERVICE)} >Thêm mới</ButtonCommon>
+                        <ButtonCommon classColor="gradient" onClick={() => navigate(ROUTE_PATH.ADD_CATEGORY_VEHICLE)} >Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
                 <div className='title-page pt-5 pb-7'>Danh sách danh mục dịch vụ du lịch</div>
