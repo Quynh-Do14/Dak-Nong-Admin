@@ -12,15 +12,17 @@ import DialogConfirmCommon from '../../infrastucture/common/components/modal/dia
 import { useRecoilValue } from 'recoil';
 import { CategoryState } from '../../core/common/atoms/category/categoryState';
 import { DistrictState } from '../../core/common/atoms/district/districtState';
-import { convertDateOnly, convertTimeOnly, showImageCommon } from '../../infrastucture/utils/helper';
+import { convertTimeOnly, showImageCommon } from '../../infrastucture/utils/helper';
 import { PaginationCommon } from '../../infrastucture/common/components/pagination/Pagination';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
 import { InputSearchCommon } from '../../infrastucture/common/components/input/input-text-search';
 import { TitleTableCommon } from '../../infrastucture/common/components/text/title-table-common';
 import { ActionCommon } from '../../infrastucture/common/components/action/action-common';
+import { RateCommon } from '../../infrastucture/common/components/rate/rate-common';
+import { CategoryVehicleState } from '../../core/common/atoms/category/categoryVehicleState';
 
 let timeout
-export const ListRestaurantManagement = () => {
+export const ListVehicleManagement = () => {
     const [searchText, setSearchText] = useState("");
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
@@ -31,21 +33,21 @@ export const ListRestaurantManagement = () => {
     const [pagination, setPagination] = useState({});
     const [totalItem, setTotalItem] = useState();
 
-    const dataCategory = useRecoilValue(CategoryState);
+    const dataCategoryVehicle = useRecoilValue(CategoryVehicleState);
     const dataDistrict = useRecoilValue(DistrictState);
 
     const [districtId, setDictrictId] = useState();
-    const [categoryId, setCategoryId] = useState(7);
+    const [categoryId, setCategoryId] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
         setDictrictId(dataDistrict[0]?.idQuanHuyen);
-        // setCategoryId(dataCategory[0]?.idDanhMucDiaDiem);
-    }, [dataDistrict, dataCategory])
+        setCategoryId(dataCategoryVehicle[0]?.idDanhMucDiaDiem);
+    }, [dataDistrict, dataCategoryVehicle])
     const checkCondition = () => {
-        return dataDistrict && dataCategory ? true : false
+        return dataDistrict && dataCategoryVehicle ? true : false
     }
-    const onGetListLocationAsync = async ({ keyWord = "", limit = pageSize, page = 1, idQuanHuyen = 1, idDanhMuc = 1 }) => {
+    const onGetListLocationAsync = async ({ keyWord = "", limit = pageSize, page = 1, idQuanHuyen = 1, idDanhMuc = 7 }) => {
         const condition = await checkCondition()
         if (condition) {
             const response = await api.getAllLocation(
@@ -57,7 +59,7 @@ export const ListRestaurantManagement = () => {
             setTotalItem(response.data.totalItems);
         }
     }
-    const onSearch = async (keyWord = "", limit = pageSize, page = 1, idQuanHuyen = dataDistrict[0]?.idQuanHuyen, idDanhMuc = 7) => {
+    const onSearch = async (keyWord = "", limit = pageSize, page = 1, idQuanHuyen = dataDistrict[0]?.idQuanHuyen, idDanhMuc = dataCategoryVehicle[0]?.idDanhMucDiaDiem) => {
         await onGetListLocationAsync({ keyWord: keyWord, limit: limit, page: page, idQuanHuyen: idQuanHuyen, idDanhMuc: idDanhMuc });
     };
 
@@ -67,21 +69,22 @@ export const ListRestaurantManagement = () => {
 
     const onChangeSearchText = (e) => {
         setSearchText(e.target.value);
+        setPage(1);
         clearTimeout(timeout);
         timeout = setTimeout(() => {
-            onSearch(e.target.value, pageSize, page, districtId, categoryId).then((_) => { });
+            onSearch(e.target.value, pageSize, 1, districtId, categoryId).then((_) => { });
         }, Constants.DEBOUNCE_SEARCH);
     };
     const onChangePage = async (value) => {
         setPage(value);
-        await onSearch(searchText, pageSize, value).then((_) => { });
+        await onSearch(searchText, pageSize, value, districtId, categoryId).then((_) => { });
     };
 
     const onPageSizeChanged = async (value) => {
         setPageSize(value);
         setSearchText("");
         setPage(1);
-        await onSearch(searchText, value, page).then((_) => { });
+        await onSearch(searchText, value, page, districtId, categoryId).then((_) => { });
     };
 
     const onOpenModalDelete = (id) => {
@@ -102,15 +105,17 @@ export const ListRestaurantManagement = () => {
         setIsDeleteModal(false);
     };
     const onChangeQuanHuyen = (value) => {
-        setDictrictId(value)
-        onSearch("", pageSize, page, value, categoryId).then((_) => { });
+        setDictrictId(value);
+        setPage(1);
+        onSearch(searchText, pageSize, 1, value, categoryId).then((_) => { });
     };
     const onChangeDanhMuc = (value) => {
-        setCategoryId(value)
-        onSearch("", pageSize, page, districtId, value).then((_) => { });
+        setCategoryId(value);
+        setPage(1);
+        onSearch(searchText, pageSize, 1, districtId, value).then((_) => { });
     };
     const onNavigate = (id) => {
-        navigate(`${(ROUTE_PATH.VIEW_RESTAURANT).replace(`${Constants.UseParams.Id}`, "")}${id}`);
+        navigate(`${(ROUTE_PATH.VIEW_VEHICLE).replace(`${Constants.UseParams.Id}`, "")}${id}`);
     }
     const listAction = (record) => {
         return (
@@ -125,7 +130,7 @@ export const ListRestaurantManagement = () => {
         )
     };
     return (
-        <MainLayout breadcrumb={"Quản lý nhà hàng"} title={"Danh sách nhà hàng"} redirect={""}>
+        <MainLayout breadcrumb={"Quản lý phương tiện di chuyển"} title={"Danh sách phương tiện di chuyển"} redirect={""}>
             <div className='flex flex-col header-page'>
                 <Row className='filter-page mb-2 py-2-5' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
                     <Col xs={24} sm={24} lg={16}>
@@ -162,45 +167,44 @@ export const ListRestaurantManagement = () => {
                                     }
                                 </Select>
                             </Col>
-                            {/* <Col className='select-search' xs={24} sm={12} lg={8}>
-                            <Select
-                                value={categoryId != null ? categoryId : null}
-                                placeholder={"Chọn danh mục"}
-                                className="w-100"
-                                onChange={onChangeDanhMuc}
-                                disabled={true}
-                                getPopupContainer={(trigger) => trigger.parentNode}
-                            >
-                                {
-                                    Constants.CategoryConfig.list && Constants.CategoryConfig.list.length &&
-                                    Constants.CategoryConfig.list.map((item, index) => {
-                                        return (
-                                            <Select.Option
-                                                key={index}
-                                                value={item.value}
-                                                title={item.label}
-                                            >
-                                                {item.label}
-                                            </Select.Option>
-                                        );
-                                    })
-                                }
-                            </Select>
-                        </Col> */}
+                            <Col className='select-search' xs={24} sm={12} lg={8}>
+                                <Select
+                                    value={categoryId != null ? categoryId : null}
+                                    placeholder={"Chọn danh mục"}
+                                    className="w-100"
+                                    onChange={onChangeDanhMuc}
+                                    disabled={false}
+                                    getPopupContainer={(trigger) => trigger.parentNode}
+                                >
+                                    {
+                                        dataCategoryVehicle && dataCategoryVehicle.length &&
+                                        dataCategoryVehicle.map((item, index) => {
+                                            return (
+                                                <Select.Option
+                                                    key={index}
+                                                    value={item.idDanhMucDiaDiem}
+                                                    title={item.tenDanhMuc}
+                                                >
+                                                    {item.tenDanhMuc}
+                                                </Select.Option>
+                                            );
+                                        })
+                                    }
+                                </Select>
+                            </Col>
                         </Row>
 
                     </Col>
                     <Col>
-                        <ButtonCommon icon={<PlusOutlined />} classColor="orange" onClick={() => navigate(ROUTE_PATH.ADD_RESTAURANT)} >Thêm mới</ButtonCommon>
+                        <ButtonCommon icon={<PlusOutlined />} classColor="orange" onClick={() => navigate(ROUTE_PATH.ADD_VEHICLE)} >Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
-                {/* <div className='title-page pt-5 pb-7'>Danh sách điểm đến</div> */}
             </div>
             <div className='flex-1 auto bg-white content-page'>
                 <Table
                     dataSource={data}
                     pagination={false}
-                    className='table-common'
+                    className="table-common"
                 >
                     <Column
                         title={"STT"}
@@ -233,12 +237,42 @@ export const ListRestaurantManagement = () => {
                     <Column
                         title={
                             <TitleTableCommon
-                                title="Tên nhà hàng"
+                                title="Tên địa điểm"
                                 width="200px"
                             />
                         }
                         key={"tenDiaDiem"}
                         dataIndex={"tenDiaDiem"}
+                    />
+                    <Column
+                        title={
+                            <TitleTableCommon
+                                title="Danh mục"
+                                width="180px"
+                            />
+                        }
+                        key={"tenDanhMuc"}
+                        dataIndex={"tenDanhMuc"}
+                        width={"200px"}
+                    />
+                    <Column
+                        title={
+                            <TitleTableCommon
+                                title="Số sao trung bình"
+                                width="180px"
+                            />
+                        }
+                        key={"soSaoTrungBinh"}
+                        dataIndex={"soSaoTrungBinh"}
+                        render={(val, record) => {
+                            return (
+                                <RateCommon
+                                    soSao={val}
+                                    luotXem={record.luotXem}
+                                />
+                            )
+                        }
+                        }
                     />
                     <Column
                         title={
@@ -253,27 +287,7 @@ export const ListRestaurantManagement = () => {
                     <Column
                         title={
                             <TitleTableCommon
-                                title="Email liên hệ"
-                                width={"200px"}
-                            />
-                        }
-                        key={"emailLienHe"}
-                        dataIndex={"emailLienHe"}
-                    />
-                    <Column
-                        title={
-                            <TitleTableCommon
-                                title="SĐT liên hệ"
-                                width={"200px"}
-                            />
-                        }
-                        key={"sdtLienHe"}
-                        dataIndex={"sdtLienHe"}
-                    />
-                    <Column
-                        title={
-                            <TitleTableCommon
-                                title="Ngày bắt đầu"
+                                title="Giờ mở cửa"
                                 width={"100px"}
                             />
                         }
@@ -286,14 +300,14 @@ export const ListRestaurantManagement = () => {
                     <Column
                         title={
                             <TitleTableCommon
-                                title="Ngày kết thúc"
+                                title="Giờ đóng cửa"
                                 width={"100px"}
                             />
                         }
                         key={"gioDongCua"}
                         dataIndex={"gioDongCua"}
                         render={(val) => (
-                            <div>{convertDateOnly(val)} </div>
+                            <div>{(val)} </div>
                         )}
                     />
                     {/* <Column
@@ -341,9 +355,9 @@ export const ListRestaurantManagement = () => {
                 />
             </div>
             <DialogConfirmCommon
-                message={"Bạn có muốn xóa nhà hàng này ra khỏi hệ thống"}
+                message={"Bạn có muốn xóa phương tiện di chuyển này ra khỏi hệ thống"}
                 titleCancel={"Bỏ qua"}
-                titleOk={"Xóa nhà hàng"}
+                titleOk={"Xóa điểm đến"}
                 visible={isDeleteModal}
                 handleCancel={onCloseModalDelete}
                 handleOk={onDeleteLocation}

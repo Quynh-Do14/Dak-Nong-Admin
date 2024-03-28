@@ -44,6 +44,7 @@ export const ViewEvaluateManagement = () => {
         if (detailEvaluate) {
             setDataEvaluate({
                 noiDung: detailEvaluate.noiDung,
+                userName: detailEvaluate.userName,
                 thoiGianDanhGia: detailEvaluate.thoiGianDanhGia,
                 soSao: detailEvaluate.soSao,
                 idDanhGia: detailEvaluate.idDanhGia,
@@ -124,9 +125,9 @@ export const ViewEvaluateManagement = () => {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputTextCommon
                                         label={"Người dùng"}
-                                        attribute={"userId"}
+                                        attribute={"userName"}
                                         isRequired={false}
-                                        dataAttribute={dataEvaluate.userId}
+                                        dataAttribute={dataEvaluate.userName}
                                         setData={setDataEvaluate}
                                         disabled={true}
                                         validate={validate}

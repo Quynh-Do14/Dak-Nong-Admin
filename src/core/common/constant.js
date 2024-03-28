@@ -20,20 +20,25 @@ export default class Constants {
                 icon: <DatabaseOutlined />
             },
             {
-                label: "Quản lý điểm đến",
+                label: "Quản lý điểm du lịch",
                 link: ROUTE_PATH.DESTINATION,
                 icon: <EnvironmentOutlined />
             },
             {
-                label: "Quản lý nhà hàng",
-                link: ROUTE_PATH.RESTAURANT,
+                label: "Quản lý phương tiện",
+                link: ROUTE_PATH.VEHICLE,
                 icon: <ScheduleOutlined />
             },
-            {
-                label: "Quản lý khách sạn",
-                link: ROUTE_PATH.HOTEL,
-                icon: <ScheduleOutlined />
-            },
+            // {
+            //     label: "Quản lý nhà hàng",
+            //     link: ROUTE_PATH.RESTAURANT,
+            //     icon: <ScheduleOutlined />
+            // },
+            // {
+            //     label: "Quản lý khách sạn",
+            //     link: ROUTE_PATH.HOTEL,
+            //     icon: <ScheduleOutlined />
+            // },
             {
                 label: "Quản lý lễ hội",
                 link: ROUTE_PATH.FESTIVAL,

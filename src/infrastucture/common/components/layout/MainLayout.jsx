@@ -16,6 +16,7 @@ import { useRecoilState } from 'recoil';
 import { CategoryState } from '../../../../core/common/atoms/category/categoryState';
 import { DistrictState } from '../../../../core/common/atoms/district/districtState';
 import { BreadcrumbCommon } from './Breabcumb';
+import { CategoryVehicleState } from '../../../../core/common/atoms/category/categoryVehicleState';
 const { Header, Content, Sider } = Layout;
 
 
@@ -27,6 +28,8 @@ export const MainLayout = ({ ...props }) => {
 
   const [dataCategory, setDataCategory] = useRecoilState(CategoryState);
   const [dataDistrict, setDataDistrict] = useRecoilState(DistrictState);
+  const [dataVehicle, setDataVehicle] = useRecoilState(CategoryVehicleState);
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -41,6 +44,20 @@ export const MainLayout = ({ ...props }) => {
   const closeModalLogout = () => {
     setIsOpenModalLogout(false);
   };
+
+  const onGetListCategoryVehicleAsync = async () => {
+    const response = await api.getDanhMucConCuaDanhMuc(
+      `idDanhMuc=${4}`,
+      () => { }
+    )
+    if (response.result?.length > 0) {
+      setDataVehicle(response.result);
+    }
+  };
+
+  useEffect(() => {
+    onGetListCategoryVehicleAsync();
+  }, [])
 
   const onGetListCategoryAsync = async () => {
     const response = await api.getDanhMucConCuaDanhMuc(

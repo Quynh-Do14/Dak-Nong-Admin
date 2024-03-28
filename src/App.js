@@ -42,6 +42,9 @@ import { ViewHotelManagement } from "./page/hotel-management/view";
 import { AddHotelManagement } from "./page/hotel-management/add";
 import { ListEvaluateManagement } from "./page/evaluate-management/list";
 import { ViewEvaluateManagement } from "./page/evaluate-management/view";
+import { ListVehicleManagement } from "./page/service-vehicle-management/list";
+import { ViewVehiclelManagement } from "./page/service-vehicle-management/view";
+import { AddVehicleManagement } from "./page/service-vehicle-management/add";
 const RouteRoot = () => {
   return (
     <BrowserRouter>
@@ -143,7 +146,7 @@ const RouteRoot = () => {
           element={<PrivateRoute component={AddSpecialtyManagement} />}
         />
 
-        <Route
+        {/* <Route
           path={ROUTE_PATH.RESTAURANT}
           element={<PrivateRoute component={ListRestaurantManagement} />}
         />
@@ -167,7 +170,7 @@ const RouteRoot = () => {
         <Route
           path={ROUTE_PATH.ADD_HOTEL}
           element={<PrivateRoute component={AddHotelManagement} />}
-        />
+        /> */}
 
         <Route
           path={ROUTE_PATH.NEWS}
@@ -193,6 +196,19 @@ const RouteRoot = () => {
         <Route
           path={ROUTE_PATH.ADD_TOUR}
           element={<PrivateRoute component={AddTourManagement} />}
+        />
+
+        <Route
+          path={ROUTE_PATH.VEHICLE}
+          element={<PrivateRoute component={ListVehicleManagement} />}
+        />
+        <Route
+          path={ROUTE_PATH.VIEW_VEHICLE}
+          element={<PrivateRoute component={ViewVehiclelManagement} />}
+        />
+        <Route
+          path={ROUTE_PATH.ADD_VEHICLE}
+          element={<PrivateRoute component={AddVehicleManagement} />}
         />
 
         <Route

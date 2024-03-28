@@ -144,8 +144,8 @@ export const ListEvaluateManagement = () => {
                                 width={"100px"}
                             />
                         }
-                        key={"userId"}
-                        dataIndex={"userId"}
+                        key={"userName"}
+                        dataIndex={"userName"}
                     />
                     <Column
                         title={

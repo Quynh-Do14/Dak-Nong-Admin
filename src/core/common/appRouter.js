@@ -57,6 +57,10 @@ export const ROUTE_PATH = {
     VIEW_EVALUATE: `${PREFIX}/evaluate/view/:id`,
     ADD_EVALUATE: `${PREFIX}/evaluate/add`,
 
+    VEHICLE: `${PREFIX}/serviceVehicle`,
+    VIEW_VEHICLE: `${PREFIX}/serviceVehicle/view/:id`,
+    ADD_VEHICLE: `${PREFIX}/serviceVehicle/add`,
+
     DISTRICT: `${PREFIX}/district`,
     VIEW_DISTRICT: `${PREFIX}/district/view/:id`,
     ADD_DISTRICT: `${PREFIX}/district/add`,

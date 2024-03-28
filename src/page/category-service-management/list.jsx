@@ -12,6 +12,8 @@ import DialogConfirmCommon from '../../infrastucture/common/components/modal/dia
 import { PaginationCommon } from '../../infrastucture/common/components/pagination/Pagination';
 import { InputSearchCommon } from '../../infrastucture/common/components/input/input-text-search';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
+import { ActionCommon } from '../evaluate-management/list';
+import { TitleTableCommon } from '../../infrastucture/common/components/text/title-table-common';
 
 let timeout
 export const ListCategoryServiceManagement = () => {
@@ -114,49 +116,63 @@ export const ListCategoryServiceManagement = () => {
                 <div className='title-page pt-5 pb-7'>Danh sách danh mục dịch vụ du lịch</div>
             </div>
             <div className='flex-1 auto bg-white content-page'>
-                <Table
-                    dataSource={data}
-                    pagination={false}
-                    className='table-common'
-                >
-                    <Column
-                        title={"STT"}
-                        dataIndex="stt"
-                        key="stt"
-                        width={"5%"}
-                        render={(val, record, index) => (
-                            <div style={{ textAlign: "center" }}>
-                                {index + 1 + pageSize * (page - 1)}
-                            </div>
-                        )}
-                    />
-                    <Column
-                        title={"Tên danh mục"}
-                        key={"tenDanhMuc"}
-                        dataIndex={"tenDanhMuc"}
-                    />
-                    <Column
-                        title={"Thao tác"}
-                        // width={"60px"}
-                        fixed="right"
-                        align='center'
-                        render={(action, record) => (
-                            // <CommonPermission permission={Permissions.OrderManagement.Order.action}>
-                            <Space
-                                size="small"
-                            >
-                                <Dropdown
-                                    trigger={["hover"]}
-                                    placement="bottomRight"
-                                    overlay={listAction(record)}
-                                >
-                                    <MenuOutlined className="pointer" />
-                                </Dropdown>
-                            </Space>
-                            // </CommonPermission>
-                        )}
-                    />
-                </Table>
+                <div className='flex-1 auto bg-white content-page'>
+                    <Table
+                        dataSource={data}
+                        pagination={false}
+                        className='table-common'
+                    >
+                        <Column
+                            title={"STT"}
+                            dataIndex="stt"
+                            key="stt"
+                            width={"5%"}
+                            render={(val, record, index) => (
+                                <div style={{ textAlign: "center" }}>
+                                    {index + 1 + pageSize * (page - 1)}
+                                </div>
+                            )}
+                        />
+                        <Column
+                            title={
+                                <TitleTableCommon
+                                    title="Tên danh mục"
+                                />
+                            }
+                            key={"tenDanhMuc"}
+                            dataIndex={"tenDanhMuc"}
+                        />
+                        <Column
+                            title={
+                                <TitleTableCommon
+                                    title="Thao tác"
+                                />
+                            }
+                            width={"60px"}
+                            fixed="right"
+                            align='center'
+                            render={(action, record) => (
+                                // <CommonPermission permission={Permissions.OrderManagement.Order.action}>
+                                // <Space
+                                //     size="small"
+                                // >
+                                //     <Dropdown
+                                //         trigger={["hover"]}
+                                //         placement="bottomRight"
+                                //         overlay={listAction(record)}
+                                //     >
+                                //         <MenuOutlined className="pointer" />
+                                //     </Dropdown>
+                                // </Space>
+                                <ActionCommon
+                                    onClickDetail={() => onNavigate(record.idDanhMucDiaDiem)}
+                                    onClickDelete={() => onOpenModalDelete(record.idDanhMucDiaDiem)}
+                                />
+                                // </CommonPermission>
+                            )}
+                        />
+                    </Table>
+                </div>
             </div>
             <div className='flex flex-col'>
                 <PaginationCommon
