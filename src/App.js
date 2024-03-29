@@ -120,7 +120,7 @@ const RouteRoot = () => {
           element={<PrivateRoute component={AddDestinationManagement} />}
         />
 
-        <Route
+        {/* <Route
           path={ROUTE_PATH.FESTIVAL}
           element={<PrivateRoute component={ListFestivalManagement} />}
         />
@@ -131,9 +131,9 @@ const RouteRoot = () => {
         <Route
           path={ROUTE_PATH.ADD_FESTIVAL}
           element={<PrivateRoute component={AddFestivalManagement} />}
-        />
+        /> */}
 
-        <Route
+        {/* <Route
           path={ROUTE_PATH.SPECIALTY}
           element={<PrivateRoute component={ListSpecialtyManagement} />}
         />
@@ -144,7 +144,7 @@ const RouteRoot = () => {
         <Route
           path={ROUTE_PATH.ADD_SPECIALTY}
           element={<PrivateRoute component={AddSpecialtyManagement} />}
-        />
+        /> */}
 
         {/* <Route
           path={ROUTE_PATH.RESTAURANT}
@@ -172,7 +172,7 @@ const RouteRoot = () => {
           element={<PrivateRoute component={AddHotelManagement} />}
         /> */}
 
-        <Route
+        {/* <Route
           path={ROUTE_PATH.NEWS}
           element={<PrivateRoute component={ListNewsManagement} />}
         />
@@ -183,7 +183,7 @@ const RouteRoot = () => {
         <Route
           path={ROUTE_PATH.ADD_NEWS}
           element={<PrivateRoute component={AddNewsManagement} />}
-        />
+        /> */}
 
         <Route
           path={ROUTE_PATH.TOUR}

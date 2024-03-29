@@ -25,7 +25,7 @@ export default class Constants {
                 icon: <EnvironmentOutlined />
             },
             {
-                label: "Quản lý phương tiện",
+                label: "Quản lý loại phương tiện",
                 link: ROUTE_PATH.VEHICLE,
                 icon: <ScheduleOutlined />
             },
@@ -39,21 +39,21 @@ export default class Constants {
             //     link: ROUTE_PATH.HOTEL,
             //     icon: <ScheduleOutlined />
             // },
-            {
-                label: "Quản lý lễ hội",
-                link: ROUTE_PATH.FESTIVAL,
-                icon: <ScheduleOutlined />
-            },
-            {
-                label: "Quản lý đặc sản",
-                link: ROUTE_PATH.SPECIALTY,
-                icon: <TagsOutlined />
-            },
-            {
-                label: "Quản lý tin tức",
-                link: ROUTE_PATH.NEWS,
-                icon: <ContainerOutlined />
-            },
+            // {
+            //     label: "Quản lý lễ hội",
+            //     link: ROUTE_PATH.FESTIVAL,
+            //     icon: <ScheduleOutlined />
+            // },
+            // {
+            //     label: "Quản lý đặc sản",
+            //     link: ROUTE_PATH.SPECIALTY,
+            //     icon: <TagsOutlined />
+            // },
+            // {
+            //     label: "Quản lý tin tức",
+            //     link: ROUTE_PATH.NEWS,
+            //     icon: <ContainerOutlined />
+            // },
             {
                 label: "Quản lý đánh giá",
                 link: ROUTE_PATH.EVALUATE,
