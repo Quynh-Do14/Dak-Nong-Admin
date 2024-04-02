@@ -12,8 +12,8 @@ import DialogConfirmCommon from '../../infrastucture/common/components/modal/dia
 import { PaginationCommon } from '../../infrastucture/common/components/pagination/Pagination';
 import { InputSearchCommon } from '../../infrastucture/common/components/input/input-text-search';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
-import { ActionCommon } from '../evaluate-management/list';
 import { TitleTableCommon } from '../../infrastucture/common/components/text/title-table-common';
+import { ActionCommon } from '../../infrastucture/common/components/action/action-common';
 
 let timeout
 export const ListCategoryServiceManagement = () => {
@@ -110,7 +110,7 @@ export const ListCategoryServiceManagement = () => {
                         />
                     </Col>
                     <Col>
-                        <ButtonCommon classColor="gradient" onClick={() => navigate(ROUTE_PATH.ADD_CATEGORY_VEHICLE)} >Thêm mới</ButtonCommon>
+                        <ButtonCommon icon={<PlusOutlined />} classColor="orange" onClick={() => navigate(ROUTE_PATH.ADD_CATEGORY_VEHICLE)} >Thêm mới</ButtonCommon>
                     </Col>
                 </Row>
                 <div className='title-page pt-5 pb-7'>Danh sách danh mục dịch vụ du lịch</div>
