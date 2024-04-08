@@ -16,7 +16,7 @@
     /* font-family: 'Source Serif 4', serif; */
 }
 
-.main-layout .sider ul.ant-menu.ant-menu-root.ant-menu-vertical.ant-menu-light.menu.css-dev-only-do-not-override-pr0fja {
+.main-layout .sider ul.ant-menu.ant-menu-root.ant-menu-vertical.ant-menu-light.menu {
     background: #094174;
     display: flex;
     padding: 25px 15px;
@@ -239,14 +239,14 @@
 }
 
 .input-common .ant-input-number.css-dev-only-do-not-override-18iikkb.w-100,
-.input-common .ant-input-number.css-dev-only-do-not-override-pr0fja.w-100,
-.input-common .ant-picker.ant-picker-middle.css-dev-only-do-not-override-pr0fja.w-100.input-date-common {
+.input-common .ant-input-number.w-100,
+.input-common .ant-picker.ant-picker-middle.w-100.input-date-common {
     border-radius: 0px !important;
     height: 34px;
 }
 
 .input-common input.ant-input-number-input,
-.input-common textarea.ant-input.css-dev-only-do-not-override-pr0fja,
+.input-common textarea.ant-input,
 .input-common .ant-picker .ant-picker-input>input {
     color: var(--00-on-surface-high-emphasis, rgba(0, 0, 0, 0.87));
     font-size: 15px;
@@ -369,12 +369,12 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
     border-color: #4361EE;
 }
 
-:where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item-active a {
+.ant-pagination .ant-pagination-item-active a {
     color: #fff !important;
 }
 
 
-:where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item a {
+.ant-pagination .ant-pagination-item a {
     color: #094174;
 }
 
@@ -386,7 +386,7 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
     color: #fff !important;
 }
 
-.container-pagination :where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item-active a {
+.container-pagination .ant-pagination .ant-pagination-item-active a {
     margin: 0;
 }
 
@@ -399,7 +399,7 @@ button.ant-btn.css-dev-only-do-not-override-18iikkb.ant-btn-default.btn-on-page:
     letter-spacing: 0.75px;
 }
 
-:where(.css-dev-only-do-not-override-pr0fja).ant-pagination .ant-pagination-item a {
+.ant-pagination .ant-pagination-item a {
     margin: 0;
 }
 
@@ -3995,25 +3995,25 @@ code {
         monospace;
 }
 
-.input-common input.ant-input.css-dev-only-do-not-override-pr0fja {
+.input-common input.ant-input {
     height: 38px !important;
 }
 
-.input-common input.ant-input.css-dev-only-do-not-override-pr0fja,
-.ant-select.w-100.css-dev-only-do-not-override-pr0fja.ant-select-single.ant-select-show-arrow.ant-select-show-search,
-:where(.css-dev-only-do-not-override-pr0fja).ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+.input-common input.ant-input,
+.ant-select.w-100.ant-select-single.ant-select-show-arrow.ant-select-show-search,
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
     border-radius: 8px;
     background: #FFF;
     height: 40px;
 }
 
-.input-common span.ant-input-affix-wrapper.w-100.css-dev-only-do-not-override-pr0fja {
+.input-common span.ant-input-affix-wrapper.w-100 {
     padding: 0 10px;
 }
 
-.input-common input.ant-input.css-dev-only-do-not-override-pr0fja,
-:where(.css-dev-only-do-not-override-pr0fja).ant-select-single.ant-select-show-arrow .ant-select-selection-item,
-:where(.css-dev-only-do-not-override-pr0fja).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder,
+.input-common input.ant-input,
+.ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+.ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder,
 .select-search .ant-select-selector,
 .select-search .ant-select-selector span.ant-select-selection-item {
     color: #475f7b;
@@ -4025,23 +4025,23 @@ code {
     letter-spacing: 0.15px;
 }
 
-textarea.ant-input.css-dev-only-do-not-override-pr0fja {
+textarea.ant-input {
     border-radius: 8px;
     background: #FFF;
     height: 200px;
 }
 
-.select-search .ant-select.w-100.css-dev-only-do-not-override-pr0fja.ant-select-single.ant-select-show-arrow {
+.select-search .ant-select.w-100.ant-select-single.ant-select-show-arrow {
     height: auto;
 }
 
-.input-common span.ant-input-affix-wrapper.w-100.css-dev-only-do-not-override-pr0fja {
+.input-common span.ant-input-affix-wrapper.w-100 {
     border-radius: 8px;
 }
 
 /* button */
 
-.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.gradient {
+.button-common button.ant-btn.ant-btn-default.gradient {
     border-radius: 8px;
     background: linear-gradient(30deg, #2782A9 28.37%, #82ACEA 67.26%, #288FBB 94.02%);
     display: flex;
@@ -4059,7 +4059,7 @@ textarea.ant-input.css-dev-only-do-not-override-pr0fja {
     letter-spacing: 0.15px;
 }
 
-.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.black {
+.button-common button.ant-btn.ant-btn-default.black {
     border-radius: 8px;
     background: #221c38;
     display: flex;
@@ -4078,7 +4078,7 @@ textarea.ant-input.css-dev-only-do-not-override-pr0fja {
 }
 
 
-.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.blue {
+.button-common button.ant-btn.ant-btn-default.blue {
     border-radius: 8px;
     background: #094174;
     display: flex;
@@ -4098,7 +4098,7 @@ textarea.ant-input.css-dev-only-do-not-override-pr0fja {
     -webkit-transition: .3s;
 }
 
-.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.grey {
+.button-common button.ant-btn.ant-btn-default.grey {
     border-radius: 8px;
     background: #E8EAEE;
     display: flex;
@@ -4115,7 +4115,7 @@ textarea.ant-input.css-dev-only-do-not-override-pr0fja {
     letter-spacing: 0.15px;
 }
 
-.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.orange {
+.button-common button.ant-btn.ant-btn-default.orange {
     border-radius: 8px;
     background: #fe7524;
     display: flex;
@@ -4135,13 +4135,13 @@ textarea.ant-input.css-dev-only-do-not-override-pr0fja {
     -webkit-transition: .3s;
 }
 
-.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.orange:hover,
-.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.blue:hover {
+.button-common button.ant-btn.ant-btn-default.orange:hover,
+.button-common button.ant-btn.ant-btn-default.blue:hover {
     background: #3283cf;
 }
 
 
-.button-common button.ant-btn.css-dev-only-do-not-override-pr0fja.ant-btn-default.upload {
+.button-common button.ant-btn.ant-btn-default.upload {
     border-radius: 5px;
     background: #E8EAEE;
     display: flex;
@@ -4160,20 +4160,20 @@ textarea.ant-input.css-dev-only-do-not-override-pr0fja {
 
 /* button */
 
-.ant-notification-notice.success-message.css-dev-only-do-not-override-pr0fja.ant-notification-notice-closable {
+.ant-notification-notice.success-message.ant-notification-notice-closable {
     border-radius: 5px;
     background: #D9FFDC;
     margin-top: 50px;
 }
 
-.ant-notification-notice.warning-message.css-dev-only-do-not-override-pr0fja.ant-notification-notice-closable {
+.ant-notification-notice.warning-message.ant-notification-notice-closable {
     border-radius: 5px;
     background: #FFF3B4;
     margin-top: 50px;
 
 }
 
-.ant-notification-notice.fail-message.css-dev-only-do-not-override-pr0fja.ant-notification-notice-closable {
+.ant-notification-notice.fail-message.ant-notification-notice-closable {
     border-radius: 5px;
     background: #FFE2E0;
     margin-top: 50px;
@@ -4218,14 +4218,14 @@ textarea.ant-input.css-dev-only-do-not-override-pr0fja {
     font-size: 15px;
 }
 
-:where(.css-dev-only-do-not-override-pr0fja).ant-table-wrapper .ant-table {
+.ant-table-wrapper .ant-table {
     font-size: 14px !important;
     font-weight: 500;
     color: #6b839f;
 }
 
-:where(.css-dev-only-do-not-override-pr0fja).ant-table-wrapper .ant-table-thead>tr>th,
-:where(.css-dev-only-do-not-override-pr0fja).ant-table-wrapper .ant-table-thead>tr>td {
+.ant-table-wrapper .ant-table-thead>tr>th,
+.ant-table-wrapper .ant-table-thead>tr>td {
     color: #475f7b;
     background: #f1f1f1;
     font-size: 16px;
@@ -4282,11 +4282,11 @@ textarea.ant-input.css-dev-only-do-not-override-pr0fja {
 }
 
 td.ant-table-cell.ant-table-cell-fix-right.ant-table-cell-fix-right-first,
-:where(.css-dev-only-do-not-override-pr0fja).ant-table-wrapper .ant-table-container table>thead>tr:first-child>*:last-child {
+.ant-table-wrapper .ant-table-container table>thead>tr:first-child>*:last-child {
     border-left: 1px solid #e3e3e3;
 }
 
-ul.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.action-admin.css-dev-only-do-not-override-pr0fja {
+ul.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.action-admin {
     padding: 4px 0px;
 }
 
