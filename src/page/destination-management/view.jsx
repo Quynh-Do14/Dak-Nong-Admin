@@ -23,6 +23,8 @@ export const ViewDestinationlManagement = () => {
     const [submittedTime, setSubmittedTime] = useState();
     const [imageName, setImageName] = useState("");
 
+    const [listImgUpload, setListImgUpload] = useState([])
+
     const [_data, _setData] = useState({});
     const dataLocation = _data;
 
@@ -44,6 +46,22 @@ export const ViewDestinationlManagement = () => {
 
         return allRequestOK;
     };
+
+    const onUploadImg = async (id) => {
+        if (listImgUpload) {
+            for (let i = 0; i < listImgUpload.length; i++) {
+
+                const data = {
+                    idDiaDiem: id,
+                    files: listImgUpload[i]
+                }
+                await api.upload(
+                    data,
+                    setLoading
+                )
+            }
+        }
+    }
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -87,7 +105,7 @@ export const ViewDestinationlManagement = () => {
             id: param.id,
 
         },
-            setLoading
+            setLoading,
         )
         setDetailLocation(response.diaDiem);
     };
@@ -153,7 +171,9 @@ export const ViewDestinationlManagement = () => {
                 parseInt(param.id),
                 formdata,
                 onBack,
-                setLoading
+                setLoading,
+                true,
+                onUploadImg
             )
         }
         else {
@@ -444,13 +464,23 @@ export const ViewDestinationlManagement = () => {
                                     />
                                 </Col>
                                 <Col span={24}>
-                                    <Row justify={"space-between"}>
-                                        <UploadFileCommon
-                                            id={"videoUpload"}
-                                            dataAttribute={dataLocation.uriVideo}
-                                            shape={"rectangle"}
-                                        />
-                                        <UploadMultiFile />
+                                    <Row align={"top"}>
+                                        <Col xl={24} xxl={6}>
+                                            <UploadFileCommon
+                                                label="Tải lên Video"
+                                                isVideo={true}
+                                                id={"videoUpload"}
+                                                dataAttribute={dataLocation.uriVideo}
+                                                shape={"rectangle"}
+                                            />
+                                        </Col>
+                                        <Col xl={24} xxl={18}>
+                                            <UploadMultiFile
+                                                label="Tải lên danh mục ảnh"
+                                                listImgUpload={listImgUpload}
+                                                setListImgUpload={setListImgUpload}
+                                            />
+                                        </Col>
                                     </Row>
 
                                 </Col>

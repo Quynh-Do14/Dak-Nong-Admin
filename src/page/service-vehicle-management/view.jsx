@@ -113,16 +113,16 @@ export const ViewVehiclelManagement = () => {
         else {
             formdata.append("hinhAnh", detailLocation.hinhAnh);
         }
-        if (document.getElementById("videoUpload").files.length > 0) {
-            formdata.append(
-                "uriVideo",
-                document.getElementById("videoUpload").files[0],
-                document.getElementById('videoUpload').value
-            );
-        }
-        else {
-            formdata.append("uriVideo", detailLocation.uriVideo);
-        }
+        // if (document.getElementById("videoUpload").files.length > 0) {
+        //     formdata.append(
+        //         "uriVideo",
+        //         document.getElementById("videoUpload").files[0],
+        //         document.getElementById('videoUpload').value
+        //     );
+        // }
+        // else {
+        //     formdata.append("uriVideo", detailLocation.uriVideo);
+        // }
         formdata.append("tenDiaDiem", dataLocation.tenDiaDiem);
         formdata.append("tenDiaDiemUS", dataLocation.tenDiaDiemUS);
         formdata.append("status", 1);

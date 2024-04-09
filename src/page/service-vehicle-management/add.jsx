@@ -66,13 +66,13 @@ export const AddVehicleManagement = () => {
                 document.getElementById('imageUpload').value
             );
         };
-        if (document.getElementById("videoUpload").files.length > 0) {
-            formdata.append(
-                "uriVideo",
-                document.getElementById("videoUpload").files[0],
-                document.getElementById('videoUpload').value
-            );
-        };
+        // if (document.getElementById("videoUpload").files.length > 0) {
+        //     formdata.append(
+        //         "uriVideo",
+        //         document.getElementById("videoUpload").files[0],
+        //         document.getElementById('videoUpload').value
+        //     );
+        // };
         formdata.append("tenDiaDiem", dataLocation.tenDiaDiem);
         formdata.append("tenDiaDiemUS", dataLocation.tenDiaDiemUS);
         formdata.append("status", 1);

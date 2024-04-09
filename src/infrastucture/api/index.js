@@ -1,10 +1,11 @@
 import { Endpoint } from "../../core/common/appRouter";
 import request from "./makeRequest";
 import * as apiLinks from "../../core/common/apiLinks";
+import { apiAxios } from "./api";
 
 const api = {
   login: (data, setLoading) => request.login(`${apiLinks.API}${Endpoint.Auth.Login}`, data, setLoading),
-  upload: (data, setLoading) => request.postUploadFile(`${apiLinks.API}${Endpoint.Module.MultiUpload}`, data, setLoading),
+  // upload: (data, setLoading) => request.postUploadFile(`${apiLinks.API}${Endpoint.Module.MultiUpload}`, data, setLoading),
 
   getHinhAnhByIdDiaDiem: (params, setLoading) =>
     request.get(
@@ -75,11 +76,73 @@ const api = {
     request.get(`${apiLinks.API}${Endpoint.Module.Location}?${params}`, setLoading),
   getLocationById: (params, setLoading) =>
     request.get(`${apiLinks.API}${Endpoint.Module.Location}/${params.id}`, setLoading),
-  createLocation: (data, callBack, setLoading) => {
+
+  // async createLocation(data, callBack, setLoading, setIdCreate,) {
+  //   setLoading(true)
+  //   try {
+  //     return await apiAxios
+  //       .postForm(`${apiLinks.API}${Endpoint.Module.Location}`,
+  //         {
+  //           data
+  //         }
+  //       )
+  //       .then(response => {
+  //         setIdCreate(response?.result.idDiaDiem)
+  //         return response;
+  //       });
+  //   }
+  //   catch (error) {
+  //     console.error(error)
+  //   } finally {
+  //     setLoading(false);
+  //     callBack()
+  //   };
+  // },
+
+  createLocation: (data, callBack, setLoading, isDestination = false, onUploadImg) => {
     request.postUploadFile(`${apiLinks.API}${Endpoint.Module.Location}`, data, callBack, setLoading)
+      .then((response) => {
+        // setIdCreate(response?.result.idDiaDiem)
+        if (isDestination) {
+          if (response) {
+            onUploadImg(response?.result.idDiaDiem)
+          }
+          return response
+        }
+      })
+
   },
-  updateLocation: (id, data, callBack, setLoading) => {
+
+
+  async upload(data, setLoading) {
+    setLoading(true)
+    try {
+      return await apiAxios.postForm(`${apiLinks.API}${Endpoint.Module.MultiUpload}`, {
+        ...data
+      }).then(response => {
+        setLoading(false)
+        return response;
+      });
+    }
+    catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false);
+    }
+
+  },
+
+  updateLocation: (id, data, callBack, setLoading, isDestination = false, onUploadImg) => {
     request.putUploadFile(`${apiLinks.API}${Endpoint.Module.Location}/${id}`, data, callBack, setLoading)
+      .then((response) => {
+        // setIdCreate(response?.result.idDiaDiem)
+        if (isDestination) {
+          if (response) {
+            onUploadImg(id)
+          }
+          return response
+        }
+      })
   },
   deleteLocation: (data, callBack, setLoading) => {
     request.delete(`${apiLinks.API}${Endpoint.Module.Location}/${data.id}`, data, callBack, setLoading)

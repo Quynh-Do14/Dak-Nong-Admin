@@ -212,23 +212,27 @@ export const ListUserManagement = () => {
                         width={"60px"}
                         fixed="right"
                         align='center'
-                        render={(action, record) => (
-                            // <Space
-                            //     size="small"
-                            // >
-                            //     <Dropdown
-                            //         trigger={["hover"]}
-                            //         placement="bottomRight"
-                            //         overlay={listAction(record)}
-                            //     >
-                            //         <MenuOutlined className="pointer" />
-                            //     </Dropdown>
-                            // </Space>
-                            <ActionCommon
-                                onClickDetail={() => onNavigate(record.id)}
-                                onClickDelete={() => onOpenModalDelete(record.id)}
-                            />
-                        )}
+                        render={(action, record) => {
+                            if (record.role !== "ADMIN") {
+                                return (
+                                    // <Space
+                                    //     size="small"
+                                    // >
+                                    //     <Dropdown
+                                    //         trigger={["hover"]}
+                                    //         placement="bottomRight"
+                                    //         overlay={listAction(record)}
+                                    //     >
+                                    //         <MenuOutlined className="pointer" />
+                                    //     </Dropdown>
+                                    // </Space>
+                                    <ActionCommon
+                                        onClickDetail={() => onNavigate(record.id)}
+                                        onClickDelete={() => onOpenModalDelete(record.id)}
+                                    />
+                                )
+                            }
+                        }}
                     />
                 </Table>
             </div>

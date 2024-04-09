@@ -4,18 +4,48 @@ import React, { useEffect, useState } from 'react'
 import api from '../../../api';
 import '../../../../assets/css/common/input.css'
 
+const getBase64 = (img, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+};
 
 const UploadMultiFile = (props) => {
     const {
         label,
         dataAttribute,
+        listImgUpload,
         setListImgUpload
     } = props;
     const [listImage, setListImage] = useState([]);
 
-    const onChange = (e) => {
-        setListImgUpload(e.fileList);
-    }
+
+    const onChange = (info) => {
+        console.log("info",info);
+        if (info.file) {
+            getBase64(info.file.originFileObj, async (url) => {
+                setListImage(url);
+                setListImgUpload([
+                    ...listImgUpload,
+                    info.file.originFileObj
+                ]);
+            });
+        }
+    };
+
+    // const onChange = async (e) => {
+    //     console.log(" e.fileList", e);
+    //     setListImgUpload(e.fileList);
+
+    //     const data = {
+    //         idDiaDiem: "255",
+    //         files: e.file
+    //     }
+    //     await api.upload(
+    //         data,
+    //         () => { }
+    //     )
+    // }
     const getAllHinhAnh = async () => {
         if (dataAttribute) {
             const response = await api.getHinhAnhByIdDiaDiem(

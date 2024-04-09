@@ -24,13 +24,14 @@ export const AddDestinationManagement = () => {
     const [submittedTime, setSubmittedTime] = useState();
     const [_data, _setData] = useState({});
     const [listImgUpload, setListImgUpload] = useState([])
+    // const [idCreate, setIdCreate] = useState("")
     const dataLocation = _data;
 
     const setDataLocation = (data) => {
         Object.assign(dataLocation, { ...data });
         _setData({ ...dataLocation });
     };
-    console.log("listImgUpload", listImgUpload);
+    // console.log("listImgUpload", listImgUpload);
     const isValidData = () => {
         let allRequestOK = true;
 
@@ -51,10 +52,20 @@ export const AddDestinationManagement = () => {
         navigate(ROUTE_PATH.DESTINATION)
     };
 
-    const onUploadImg = async () => {
-        await api.upload(
-            listImgUpload,
-        )
+    const onUploadImg = async (id) => {
+        if (listImgUpload) {
+            for (let i = 0; i < listImgUpload.length; i++) {
+
+                const data = {
+                    idDiaDiem: "255",
+                    files: listImgUpload[i]
+                }
+                await api.upload(
+                    data,
+                    setLoading
+                )
+            }
+        }
     }
     const onCreateLocation = async () => {
         var formdata = new FormData();
@@ -89,11 +100,11 @@ export const AddDestinationManagement = () => {
         formdata.append("idQuanHuyen", dataLocation.idQuanHuyen);
         formdata.append("idDanhMuc", dataLocation.idDanhMuc);
         formdata.append("soSaoTrungBinh", dataLocation.soSaoTrungBinh || 0);
-        formdata.append("emailLienHe", dataLocation.emailLienHe);
-        formdata.append("sdtLienHe", dataLocation.sdtLienHe);
-        formdata.append("gioMoCua", dataLocation.gioMoCua);
-        formdata.append("gioDongCua", dataLocation.gioDongCua);
-        formdata.append("thoiGianGhe", dataLocation.thoiGianGhe);
+        formdata.append("emailLienHe", dataLocation.emailLienHe || "");
+        formdata.append("sdtLienHe", dataLocation.sdtLienHe || "");
+        formdata.append("gioMoCua", dataLocation.gioMoCua || "");
+        formdata.append("gioDongCua", dataLocation.gioDongCua || "");
+        formdata.append("thoiGianGhe", dataLocation.thoiGianGhe || "");
         formdata.append("luotXem", dataLocation.luotXem || 0);
         formdata.append("giaVe", dataLocation.giaVe)
         formdata.append("giaVeUS", dataLocation.giaVeUS)
@@ -104,14 +115,15 @@ export const AddDestinationManagement = () => {
             await api.createLocation(
                 formdata,
                 onBack,
-                setLoading
+                setLoading,
+                true,
+                onUploadImg
             )
         }
         else {
             WarningMessage("Nhập thiếu thông tin", "Vui lòng nhập đầy đủ thông tin")
         }
     };
-
     return (
         <MainLayout breadcrumb={"Quản lý điểm đến"} title={"Thêm điểm đến"} redirect={ROUTE_PATH.DESTINATION}>
             <div className='main-page h-100 flex-1 auto bg-white px-4 py-8'>
@@ -406,6 +418,7 @@ export const AddDestinationManagement = () => {
                                         <Col xl={24} xxl={18}>
                                             <UploadMultiFile
                                                 label="Tải lên danh mục ảnh"
+                                                listImgUpload={listImgUpload}
                                                 setListImgUpload={setListImgUpload}
                                             />
                                         </Col>
