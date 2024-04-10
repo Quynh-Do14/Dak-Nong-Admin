@@ -116,7 +116,6 @@ export const ViewDestinationlManagement = () => {
     const onBack = () => {
         navigate(ROUTE_PATH.DESTINATION)
     };
-
     const onUpdateLocation = async () => {
         var formdata = new FormData();
         await setSubmittedTime(Date.now());

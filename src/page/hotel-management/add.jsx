@@ -52,7 +52,6 @@ export const AddHotelManagement = () => {
     };
 
     const onCreateLocation = async () => {
-        console.log('                document.getElementById("imageUpload").files[0]', document.getElementById("imageUpload").files[0]);
         var formdata = new FormData();
         await setSubmittedTime(Date.now());
         if (document.getElementById("imageUpload").files.length > 0) {

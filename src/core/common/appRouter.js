@@ -65,6 +65,9 @@ export const ROUTE_PATH = {
     VIEW_DISTRICT: `${PREFIX}/district/view/:id`,
     ADD_DISTRICT: `${PREFIX}/district/add`,
 
+    SCHEDULE: `${PREFIX}/schedule`,
+    VIEW_SCHEDULE: `${PREFIX}/schedule/view/:id`,
+    ADD_SCHEDULE: `${PREFIX}/schedule/add`,
     MAINLAYOUT: `${PREFIX}/`,
 };
 export class Endpoint {
@@ -85,5 +88,6 @@ export class Endpoint {
         static Upload = "/files/upload";
         static MultiUpload = "/files/upload-multi";
         static Files = "/files/hinh-anh"
+        static Schedule = "/lichtrinh"
     }
 };

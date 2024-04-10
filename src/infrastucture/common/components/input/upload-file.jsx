@@ -29,7 +29,6 @@ const UploadFileCommon = (props) => {
 
     const handleFileChange = async (event) => {
         const file = event.target.files[0].name;
-        console.log("file", event.target.files[0]);
         setFile(file)
     };
     return (

@@ -25,7 +25,7 @@ export default class Constants {
                 icon: <EnvironmentOutlined />
             },
             {
-                label: "Quản lý loại phương tiện",
+                label: "Quản lý phương tiện",
                 link: ROUTE_PATH.VEHICLE,
                 icon: <ScheduleOutlined />
             },
@@ -49,11 +49,16 @@ export default class Constants {
             //     link: ROUTE_PATH.SPECIALTY,
             //     icon: <TagsOutlined />
             // },
-            // {
-            //     label: "Quản lý tin tức",
-            //     link: ROUTE_PATH.NEWS,
-            //     icon: <ContainerOutlined />
-            // },
+            {
+                label: "Quản lý lịch trình",
+                link: ROUTE_PATH.SCHEDULE,
+                icon: <ContainerOutlined />
+            },
+            {
+                label: "Quản lý tin tức",
+                link: ROUTE_PATH.NEWS,
+                icon: <ContainerOutlined />
+            },
             {
                 label: "Quản lý đánh giá",
                 link: ROUTE_PATH.EVALUATE,
@@ -114,8 +119,8 @@ export default class Constants {
         }
         static List = [
             { label: "Quản trị viên", value: "ADMIN" },
-            { label: "Ủy ban nhân dân Tỉnh", value: "COMMITTEE" },
-            { label: "Sở VHTT&DL", value: "DEPARTMENT" },
+            // { label: "Ủy ban nhân dân Tỉnh", value: "COMMITTEE" },
+            // { label: "Sở VHTT&DL", value: "DEPARTMENT" },
             { label: "Người dùng", value: "USER" },
         ]
     }

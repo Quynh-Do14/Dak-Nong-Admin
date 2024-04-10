@@ -87,30 +87,53 @@ export const ViewNewsManagement = () => {
     const onUpdateNews = async () => {
         var formdata = new FormData();
         await setSubmittedTime(Date.now());
-        if (document.getElementById("file").files.length > 0) {
+        if (document.getElementById("imageUpload").files.length > 0) {
             formdata.append(
                 "hinhAnh",
-                document.getElementById("file").files[0],
-                document.getElementById('file').value
+                document.getElementById("imageUpload").files[0],
+                document.getElementById('imageUpload').value
             );
         }
         else {
             formdata.append("hinhAnh", dataNews.hinhAnh);
         }
+        if (document.getElementById("imageUpload2").files.length > 0) {
+            formdata.append(
+                "hinhAnh2",
+                document.getElementById("imageUpload2").files[0],
+                document.getElementById('imageUpload2').value
+            );
+        }
+        else {
+            formdata.append("hinhAnh2", dataNews.hinhAnh);
+        }
+        if (document.getElementById("imageUpload3").files.length > 0) {
+            formdata.append(
+                "hinhAnh3",
+                document.getElementById("imageUpload3").files[0],
+                document.getElementById('imageUpload3').value
+            );
+        }
+        else {
+            formdata.append("hinhAnh3", dataNews.hinhAnh);
+        }
         formdata.append("tieuDe", dataNews.tieuDe);
+        formdata.append("tieuDeUS", dataNews.tieuDeUS);
         formdata.append("status", 1);
         formdata.append("tieuDeCon", dataNews.tieuDeCon);
+        formdata.append("tieuDeConUS", dataNews.tieuDeConUS);
         formdata.append("moTaNgan", dataNews.moTaNgan);
-        formdata.append("firstName", dataNews.firstName);
+        formdata.append("moTaNganUS", dataNews.moTaNganUS);
         formdata.append("chiTiet", dataNews.chiTiet);
+        formdata.append("chiTietUS", dataNews.chiTietUS);
         formdata.append("ngayDang", dataNews.ngayDang);
-        formdata.append("luotXem", dataNews.luotXem);
-        formdata.append("soSaoTrungBinh", dataNews.soSaoTrungBinh);
-        formdata.append("diaChi", dataNews.diaChi);
-        formdata.append("userId", dataNews.userId || 1);
+        formdata.append("luotXem", dataNews.luotXem || 1);
+        formdata.append("soSaoTrungBinh", dataNews.soSaoTrungBinh || 0);
+        formdata.append("diaChi", dataNews.diaChi || "");
+        formdata.append("userId", localStorage.getItem("id") || 1);
         formdata.append("lat", 1);
-        formdata.append("long", 1);
-        formdata.append("geom", "POINT(-122.360 47.656)");
+        formdata.append("log", 1);
+        formdata.append("geom", "");
         if (isValidData()) {
             await api.updateNews(
                 param.id,
@@ -134,21 +157,24 @@ export const ViewNewsManagement = () => {
                             <Col>
                                 <UploadFileCommon
                                     label={''}
+                                    id={"imageUpload"}
                                     dataAttribute={dataNews.hinhAnh}
                                 />
                                 <UploadFileCommon
                                     label={''}
+                                    id={"imageUpload2"}
                                     dataAttribute={dataNews.hinhAnh2}
                                     shape={'rectangle'}
                                 />
                                 <UploadFileCommon
                                     label={''}
+                                    id={"imageUpload3"}
                                     dataAttribute={dataNews.hinhAnh3}
                                     shape={'rectangle'}
                                 />
                             </Col>
                         </Col>
-                         <Col xs={24} sm={24} md={12} lg={16} xl={18} xxl={19} className='border-add'>
+                        <Col xs={24} sm={24} md={12} lg={16} xl={18} xxl={19} className='border-add'>
                             <div className='legend-title'>Chỉnh sửa thông tin</div>
                             <Row gutter={[30, 0]}>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>

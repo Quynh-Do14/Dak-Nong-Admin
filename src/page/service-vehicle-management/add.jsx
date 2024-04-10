@@ -84,8 +84,6 @@ export const AddVehicleManagement = () => {
         formdata.append("viTriDiaLyUS", dataLocation.viTriDiaLyUS);
         formdata.append("chiDanDuongDi", dataLocation.chiDanDuongDi);
         formdata.append("chiDanDuongDiUS", dataLocation.chiDanDuongDiUS);
-        formdata.append("moTa", dataLocation.moTa);
-        formdata.append("moTaUS", dataLocation.moTaUS);
         formdata.append("idQuanHuyen", dataLocation.idQuanHuyen);
         formdata.append("idDanhMuc", dataLocation.idDanhMuc);
         formdata.append("soSaoTrungBinh", dataLocation.soSaoTrungBinh || 0);

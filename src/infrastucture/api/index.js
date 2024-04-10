@@ -195,6 +195,22 @@ const api = {
   deleteNews: (data, callBack, setLoading) => {
     request.delete(`${apiLinks.API}${Endpoint.Module.News}/${data.id}`, data, callBack, setLoading)
   },
+  /////
+
+  /////
+  getAllSchedule: (params, setLoading) =>
+    request.get(`${apiLinks.API}${Endpoint.Module.Schedule}/getAllLichTrinh?${params}`, setLoading),
+  getScheduleById: (params, setLoading) =>
+    request.get(`${apiLinks.API}${Endpoint.Module.Schedule}/getLichTrinhById/${params.id}`, setLoading),
+  createSchedule: (data, callBack, setLoading) => {
+    request.post(`${apiLinks.API}${Endpoint.Module.Schedule}/themLichTrinh`, data, callBack, setLoading)
+  },
+  updateSchedule: (id, data, callBack, setLoading) => {
+    request.post(`${apiLinks.API}${Endpoint.Module.Schedule}/capNhatLichTrinh/${id}`, data, callBack, setLoading)
+  },
+  deleteSchedule: (data, callBack, setLoading) => {
+    request.post(`${apiLinks.API}${Endpoint.Module.Schedule}/xoaLichTrinh/${data.id}`, data, callBack, setLoading)
+  },
 
   /////
 };

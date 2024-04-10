@@ -49,6 +49,7 @@ export const AddNewsManagement = () => {
     };
 
     const onCreateNews = async () => {
+        
         var formdata = new FormData();
         await setSubmittedTime(Date.now());
         if (document.getElementById("imageUpload").files.length > 0) {
@@ -81,14 +82,14 @@ export const AddNewsManagement = () => {
         formdata.append("moTaNganUS", dataNews.moTaNganUS);
         formdata.append("chiTiet", dataNews.chiTiet);
         formdata.append("chiTietUS", dataNews.chiTietUS);
-
-        formdata.append("firstName", dataNews.firstName);
         formdata.append("ngayDang", getCurrentDate());
-        formdata.append("luotXem", dataNews.luotXem || 0);
+        formdata.append("luotXem", dataNews.luotXem || 1);
         formdata.append("soSaoTrungBinh", dataNews.soSaoTrungBinh || 0);
-        formdata.append("diaChi", dataNews.diaChi);
-        formdata.append("userId", dataNews.userId || 1);
-        // formdata.append("geom", "POINT(-122.360 47.656)");
+        formdata.append("diaChi", dataNews.diaChi || "");
+        formdata.append("userId", localStorage.getItem("id") || 1);
+        formdata.append("lat", 1);
+        formdata.append("log", 1);
+        formdata.append("geom", "");
         if (isValidData()) {
             await api.createNews(
                 formdata,

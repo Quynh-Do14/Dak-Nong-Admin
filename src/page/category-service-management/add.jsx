@@ -48,6 +48,7 @@ export const AddCategoryServiceManagement = () => {
         if (isValidData()) {
             await api.createCategory({
                 tenDanhMuc: dataCategory.tenDanhMuc,
+                tenDanhMucUS: dataCategory.tenDanhMucUS,
                 status: 1,
                 parentId: Constants.CategoryConfig.Vehicle.value
             },
@@ -74,6 +75,19 @@ export const AddCategoryServiceManagement = () => {
                                         attribute={"tenDanhMuc"}
                                         isRequired={true}
                                         dataAttribute={dataCategory.tenDanhMuc}
+                                        setData={setDataCategory}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col span={24}>
+                                    <InputTextCommon
+                                        label={"Tên danh mục(Tiếng anh)"}
+                                        attribute={"tenDanhMucUS"}
+                                        isRequired={true}
+                                        dataAttribute={dataCategory.tenDanhMucUS}
                                         setData={setDataCategory}
                                         disabled={false}
                                         validate={validate}

@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { MainLayout } from '../../infrastucture/common/components/layout/MainLayout'
 import { ROUTE_PATH } from '../../core/common/appRouter'
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../infrastucture/api';
 import InputTextCommon from '../../infrastucture/common/components/input/input-text';
-import { Button, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 import { FullPageLoading } from '../../infrastucture/common/components/controls/loading';
 import InputTextAreaCommon from '../../infrastucture/common/components/input/input-text-area';
-import InputNumberCommon from '../../infrastucture/common/components/input/input-number';
-import InputTimePickerCommon from '../../infrastucture/common/components/input/input-timepicker';
 import UploadFileCommon from '../../infrastucture/common/components/input/upload-file';
 import InputSelectDistrictCommon from '../../infrastucture/common/components/input/select-district';
-import InputSelectCategoryCommon from '../../infrastucture/common/components/input/select-category';
 import { WarningMessage } from '../../infrastucture/common/components/toast/notificationToast';
 import Constants from '../../core/common/constant';
 import { ButtonCommon } from '../../infrastucture/common/components/button/button-common';
-import InputDateCommon from '../../infrastucture/common/components/input/input-date';
-import { convertDateOnly } from '../../infrastucture/utils/helper';
-import UploadMultiFile from '../../infrastucture/common/components/input/upload-multi-file';
 
 export const AddFestivalManagement = () => {
     const [validate, setValidate] = useState({});
@@ -52,7 +46,6 @@ export const AddFestivalManagement = () => {
     };
 
     const onCreateLocation = async () => {
-        console.log('                document.getElementById("imageUpload").files[0]', document.getElementById("imageUpload").files[0]);
         var formdata = new FormData();
         await setSubmittedTime(Date.now());
         if (document.getElementById("imageUpload").files.length > 0) {

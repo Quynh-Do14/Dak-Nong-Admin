@@ -42,6 +42,7 @@ export const ViewCategoryNewsManagement = () => {
         if (detailCategory) {
             setDataCategory({
                 tenDanhMuc: detailCategory.tenDanhMuc,
+                tenDanhMucUS: detailCategory.tenDanhMucUS,
                 status: detailCategory.status,
             });
         };
@@ -70,6 +71,7 @@ export const ViewCategoryNewsManagement = () => {
             await api.updateCategory({
                 id: param.id,
                 tenDanhMuc: dataCategory.tenDanhMuc,
+                tenDanhMucUS: dataCategory.tenDanhMucUS,
                 status: dataCategory.status,
                 parentId: dataCategory.parentId,
             },
@@ -96,6 +98,19 @@ export const ViewCategoryNewsManagement = () => {
                                         attribute={"tenDanhMuc"}
                                         isRequired={true}
                                         dataAttribute={dataCategory.tenDanhMuc}
+                                        setData={setDataCategory}
+                                        disabled={false}
+                                        validate={validate}
+                                        setValidate={setValidate}
+                                        submittedTime={submittedTime}
+                                    />
+                                </Col>
+                                <Col span={24}>
+                                    <InputTextCommon
+                                        label={"Tên danh mục(Tiếng anh)"}
+                                        attribute={"tenDanhMucUS"}
+                                        isRequired={true}
+                                        dataAttribute={dataCategory.tenDanhMucUS}
                                         setData={setDataCategory}
                                         disabled={false}
                                         validate={validate}

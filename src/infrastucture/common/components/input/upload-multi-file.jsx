@@ -21,7 +21,6 @@ const UploadMultiFile = (props) => {
 
 
     const onChange = (info) => {
-        console.log("info",info);
         if (info.file) {
             getBase64(info.file.originFileObj, async (url) => {
                 setListImage(url);
@@ -34,7 +33,6 @@ const UploadMultiFile = (props) => {
     };
 
     // const onChange = async (e) => {
-    //     console.log(" e.fileList", e);
     //     setListImgUpload(e.fileList);
 
     //     const data = {

@@ -17,6 +17,7 @@ import { CategoryState } from '../../../../core/common/atoms/category/categorySt
 import { DistrictState } from '../../../../core/common/atoms/district/districtState';
 import { BreadcrumbCommon } from './Breabcumb';
 import { CategoryVehicleState } from '../../../../core/common/atoms/category/categoryVehicleState';
+import { DestinaionState } from '../../../../core/common/atoms/category/destinationState';
 const { Header, Content, Sider } = Layout;
 
 
@@ -29,7 +30,7 @@ export const MainLayout = ({ ...props }) => {
   const [dataCategory, setDataCategory] = useRecoilState(CategoryState);
   const [dataDistrict, setDataDistrict] = useRecoilState(DistrictState);
   const [dataVehicle, setDataVehicle] = useRecoilState(CategoryVehicleState);
-
+  const [dataDestination, setDataDestination] = useRecoilState(DestinaionState);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -85,6 +86,18 @@ export const MainLayout = ({ ...props }) => {
 
   useEffect(() => {
     onGetListDistrictAsync();
+  }, []);
+
+  const onGetListLocationAsync = async () => {
+    const response = await api.getAllLocation(
+      `${Constants.Params.limit}=1000&${Constants.Params.idDanhMuc}=1`,
+      () => { }
+    )
+    setDataDestination(response.data.diaDiems);
+  }
+
+  useEffect(() => {
+    onGetListLocationAsync().then(_ => { });
   }, []);
 
   const listAction = () => {

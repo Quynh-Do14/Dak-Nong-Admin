@@ -45,6 +45,9 @@ import { ViewEvaluateManagement } from "./page/evaluate-management/view";
 import { ListVehicleManagement } from "./page/service-vehicle-management/list";
 import { ViewVehiclelManagement } from "./page/service-vehicle-management/view";
 import { AddVehicleManagement } from "./page/service-vehicle-management/add";
+import { ListScheduleManagement } from "./page/schedule-management/list";
+import { AddScheduleManagement } from "./page/schedule-management/add";
+import { ViewScheduleManagement } from "./page/schedule-management/view";
 const RouteRoot = () => {
   return (
     <BrowserRouter>
@@ -171,8 +174,21 @@ const RouteRoot = () => {
           path={ROUTE_PATH.ADD_HOTEL}
           element={<PrivateRoute component={AddHotelManagement} />}
         /> */}
+        <Route
+          path={ROUTE_PATH.SCHEDULE}
+          element={<PrivateRoute component={ListScheduleManagement} />}
+        />
+        <Route
+          path={ROUTE_PATH.VIEW_SCHEDULE}
+          element={<PrivateRoute component={ViewScheduleManagement} />}
+        />
+        <Route
+          path={ROUTE_PATH.ADD_SCHEDULE}
+          element={<PrivateRoute component={AddScheduleManagement} />}
+        />
 
-        {/* <Route
+
+        <Route
           path={ROUTE_PATH.NEWS}
           element={<PrivateRoute component={ListNewsManagement} />}
         />
@@ -183,7 +199,7 @@ const RouteRoot = () => {
         <Route
           path={ROUTE_PATH.ADD_NEWS}
           element={<PrivateRoute component={AddNewsManagement} />}
-        /> */}
+        />
 
         <Route
           path={ROUTE_PATH.TOUR}
