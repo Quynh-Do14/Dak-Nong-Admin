@@ -65,7 +65,7 @@ export default class Constants {
                 icon: <ContainerOutlined />
             },
             {
-                label: "Quản lý quận huyện",
+                label: "Quản lý TP/Huyện",
                 link: ROUTE_PATH.DISTRICT,
                 icon: <ProjectOutlined />
             },

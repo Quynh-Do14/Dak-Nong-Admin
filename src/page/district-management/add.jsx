@@ -58,7 +58,7 @@ export const AddDistrictManagement = () => {
         };
     };
     return (
-        <MainLayout breadcrumb={"Quản lý quận huyện"} title={"Thêm quận huyện"} redirect={ROUTE_PATH.DISTRICT}>
+        <MainLayout breadcrumb={"Quản lý TP/Huyện"} title={"Thêm TP/Huyện"} redirect={ROUTE_PATH.DISTRICT}>
             <div className='main-page h-100 flex-1 auto bg-white px-4 py-8'>
                 <div className='bg-white'>
                     <Row>
@@ -67,7 +67,7 @@ export const AddDistrictManagement = () => {
                             <Row gutter={[30, 0]}>
                                 <Col span={24}>
                                     <InputTextCommon
-                                        label={"Tên quận huyện"}
+                                        label={"Tên TP/Huyện"}
                                         attribute={"tenQuanHuyen"}
                                         isRequired={true}
                                         dataAttribute={dataDistrict.tenQuanHuyen}

@@ -146,7 +146,7 @@ export const ListVehicleManagement = () => {
                             <Col className='select-search' xs={24} sm={12} lg={8}>
                                 <Select
                                     value={districtId != null ? districtId : null}
-                                    placeholder={"Chọn quận huyện"}
+                                    placeholder={"Chọn TP/Huyện"}
                                     className="w-100"
                                     onChange={onChangeQuanHuyen}
                                     getPopupContainer={(trigger) => trigger.parentNode}

@@ -54,7 +54,7 @@ const RouteRoot = () => {
       <Routes>
         <Route path={ROUTE_PATH.LOGIN} element={<LoginPage />} />
         {/* <Route
-          path={ROUTE_PATH.MAINLAYOUT}
+          path={ROUTE_PATH.ADMIN}
           element={<PrivateRoute component={MainLayout} />}
         /> */}
 
@@ -187,7 +187,6 @@ const RouteRoot = () => {
           element={<PrivateRoute component={AddScheduleManagement} />}
         />
 
-
         <Route
           path={ROUTE_PATH.NEWS}
           element={<PrivateRoute component={ListNewsManagement} />}
@@ -238,7 +237,7 @@ const RouteRoot = () => {
         />
 
         <Route
-          path={"/"}
+          path={ROUTE_PATH.ADMIN}
           element={<PrivateRoute component={ListUserManagement} />}
         />
       </Routes>

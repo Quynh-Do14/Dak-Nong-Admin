@@ -1,6 +1,7 @@
-const PREFIX = "";
+const PREFIX = "/admin";
 
 export const ROUTE_PATH = {
+    ADMIN :`${PREFIX}`,
     LOGIN: `${PREFIX}/login`,
     REGISTER: `${PREFIX}/register`,
 

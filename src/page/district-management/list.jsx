@@ -97,7 +97,7 @@ export const ListDistrictManagement = () => {
         )
     };
     return (
-        <MainLayout breadcrumb={"Quản lý quận huyện"} title={"Danh sách quận huyện"} redirect={""}>
+        <MainLayout breadcrumb={"Quản lý TP/Huyện"} title={"Danh sách TP/Huyện"} redirect={""}>
             <div className='flex flex-col header-page'>
                 <Row className='filter-page mb-2 py-2-5' gutter={[10, 10]} justify={"space-between"} align={"middle"}>
                     <Col xs={24} sm={24} lg={16}>
@@ -135,7 +135,7 @@ export const ListDistrictManagement = () => {
                     <Column
                         title={
                             <TitleTableCommon
-                                title="Tên quận huyện"
+                                title="Tên TP/Huyện"
                             />
                         }
                         key={"tenQuanHuyen"}
@@ -181,9 +181,9 @@ export const ListDistrictManagement = () => {
                 />
             </div>
             <DialogConfirmCommon
-                message={"Bạn có muốn xóa quận huyện này ra khỏi hệ thống"}
+                message={"Bạn có muốn xóa TP/Huyện này ra khỏi hệ thống"}
                 titleCancel={"Bỏ qua"}
-                titleOk={"Xóa quận huyện"}
+                titleOk={"Xóa TP/Huyện"}
                 visible={isDeleteModal}
                 handleCancel={onCloseModalDelete}
                 handleOk={onDeleteDistrict}

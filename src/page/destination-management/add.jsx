@@ -191,7 +191,7 @@ export const AddDestinationManagement = () => {
                                 </Col>
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12}>
                                     <InputSelectDistrictCommon
-                                        label={"Quận huyện"}
+                                        label={"TP/Huyện"}
                                         attribute={"idQuanHuyen"}
                                         isRequired={true}
                                         dataAttribute={dataLocation.idQuanHuyen}
